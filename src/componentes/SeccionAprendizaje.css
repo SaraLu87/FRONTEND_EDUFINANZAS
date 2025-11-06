@@ -1,0 +1,210 @@
+.seccion-aprendizaje {
+  background: linear-gradient(180deg, #f0f4ff 0%, #e0e7ff 100%);
+  padding: 80px 0;
+  position: relative;
+}
+
+.titulo-seccion {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--color-texto);
+}
+
+.subtitulo-seccion {
+  font-size: 1.2rem;
+  color: var(--color-texto-claro);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Tarjetas de módulos */
+.tarjeta-modulo {
+  background: white;
+  border-radius: 20px;
+  padding: 30px 20px;
+  height: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.tarjeta-modulo:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.icono-modulo {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.titulo-modulo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-texto);
+  margin-bottom: 15px;
+}
+
+.descripcion-modulo {
+  font-size: 0.95rem;
+  color: var(--color-texto-claro);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Agregando imagen de fondo a la sección Tips del Día */
+.seccion-tips-dia {
+  margin-top: 0px;
+  position: relative;
+  padding: 0px 0;
+  /* background-image: url("/tercera_image.jpg"); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+/* Overlay para mejorar legibilidad del texto sobre la imagen */
+.seccion-tips-dia::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  /*tamaño del card:*/
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+}
+
+.seccion-tips-dia > * {
+  position: relative;
+  z-index: 2;
+}
+
+.ilustracion-persona-celebrando {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4rem;
+  z-index: 10;
+}
+
+.emoji-celebracion {
+  animation: celebrar 1.5s ease-in-out infinite;
+}
+
+.emoji-moneda {
+  margin-left: 10px;
+  animation: rotar-moneda 2s linear infinite;
+}
+
+@keyframes celebrar {
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes rotar-moneda {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.titulo-tips-dia {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--color-texto);
+  margin-top: 40px;
+}
+
+/* Tarjetas de tips */
+.tarjeta-tip {
+  border-radius: 24px;
+  padding: 40px 30px;
+  color: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tarjeta-tip:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.titulo-tip {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.descripcion-tip {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Ilustración de monedas flotantes */
+.ilustracion-monedas {
+  position: absolute;
+  bottom: 20px;
+  right: 10%;
+  display: flex;
+  gap: 20px;
+}
+
+.moneda-flotante {
+  font-size: 3rem;
+  animation: flotar-moneda 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+.moneda-flotante:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.moneda-flotante:nth-child(3) {
+  animation-delay: 2s;
+}
+
+@keyframes flotar-moneda {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .titulo-seccion {
+    font-size: 2rem;
+  }
+
+  .titulo-tips-dia {
+    font-size: 2rem;
+  }
+
+  .ilustracion-monedas {
+    display: none;
+  }
+}
