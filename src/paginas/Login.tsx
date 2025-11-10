@@ -1,8 +1,6 @@
-"use client"
-
 import type React from "react"
 import { useState } from "react"
-import Link from "next/link"
+import { Link } from "react-router-dom"
 import "./Login.css"
 
 const Login = () => {
@@ -57,7 +55,11 @@ const Login = () => {
           <div className="encabezado-login">
             <div className="logo-login">
               <div className="logo-circulo-login">
-                <span className="logo-simbolo-login">$</span>
+                <img
+                  src="/logo.png"
+                  alt="Logo EduFinanzas"
+                  className="logo-circulo"
+                  />                
               </div>
               <span className="logo-texto-login">EduFinanzas</span>
             </div>
@@ -154,7 +156,7 @@ const Login = () => {
 
             {/* Volver al inicio */}
             <div className="texto-centro mt-3">
-              <Link href="/" className="enlace-volver">
+              <Link to="/" className="enlace-volver">
                 Volver al inicio
               </Link>
             </div>

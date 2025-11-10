@@ -1,4 +1,3 @@
-"use client"
 import Navbar from "../componentes/Navbar"
 import SeccionHero from "../componentes/SeccionHero"
 import SeccionAprendizaje from "../componentes/SeccionAprendizaje"

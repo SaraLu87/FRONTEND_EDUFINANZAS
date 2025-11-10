@@ -1,4 +1,3 @@
-"use client"
 import "./Footer.css"
 
 const Footer = () => {
@@ -11,7 +10,11 @@ const Footer = () => {
                     {/* Columna 1: Logo y descripción */}
                     <div className="col-md-4">
                         <div className="footer-logo">
-                            <div className="logo-icono">💲</div>
+                            <img
+                                src="/logo.png"
+                                alt="Logo EduFinanzas"
+                                className="logo-circulo"
+                                />
                             <h3 className="logo-texto">EduFinanzas</h3>
                         </div>
                         <p className="footer-descripcion">

@@ -1,4 +1,3 @@
-"use client"
 import "./SeccionAprendizaje.css"
 
 const SeccionAprendizaje = () => {
@@ -42,7 +41,7 @@ const SeccionAprendizaje = () => {
     <section className="seccion-aprendizaje" id="que-aprenderas">
       <div className="container">
         {/* Sección ¿Qué aprenderás? */}
-        <div className="mb-2 pb-5">
+        <div className="mb-2 pb-4">
           <h2 className="titulo-seccion text-center mb-3">¿Qué aprenderás?</h2>
           <p className="subtitulo-seccion text-center mb-5">
             Módulos diseñados específicamente para adolescentes, combinando teoría y práctica.
@@ -93,3 +92,4 @@ const SeccionAprendizaje = () => {
 }
 
 export default SeccionAprendizaje
+

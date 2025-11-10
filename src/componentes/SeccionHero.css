@@ -6,10 +6,10 @@
 }
 
 .titulo-principal {
-  font-size: 3.5rem;
+  font-size: 4.0rem;
   font-weight: 800;
   color: var(--color-texto);
-  line-height: 1.2;
+  line-height: 1.3;
 }
 
 .texto-destacado {
@@ -43,7 +43,7 @@
 }
 
 .descripcion-hero {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   color: var(--color-texto-claro);
   line-height: 1.6;
 }
