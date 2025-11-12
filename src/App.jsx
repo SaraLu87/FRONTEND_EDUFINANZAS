@@ -41,9 +41,9 @@ function App() {
             <Route path="/" element={<Navigate to="/registro" replace />} />
 
             {/* Rutas principales */}
-            <Route path="/registro" element={<Registro />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/inicio" element={<Inicio />} />
+            <Route path="/login" element={<Login />} /> 
+            <Route path="/registro" element={<Registro />} />                       
             <Route path="/temas" element={<Temas />} />
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/perfil-administrador" element={<PerfilAdministrador />} />
