@@ -5,27 +5,27 @@ import logo from "../assets/logo.png";
 function Encabezado({ monedas }) {
   const navigate = useNavigate();
 
-  // 🔐 Cierra la sesión y limpia almacenamiento
+  // Cierra la sesión y limpia almacenamiento
   const cerrarSesion = () => {
     localStorage.clear();
     alert("Sesión cerrada correctamente 👋");
     navigate("/inicio");
   };
 
-  // 🏠 Al hacer clic en el logo, vuelve a la pantalla de inicio
+  //Al hacer clic en el logo, vuelve a la pantalla de inicio
   const irInicio = () => {
     navigate("/inicio");
   };
 
   return (
-    <Navbar bg="info" expand="lg" className="shadow-sm px-4">
+    <Navbar bg="primary" expand="lg" className="shadow-sm px-4">
       <Container fluid className="d-flex justify-content-between align-items-center">
         
-        {/* 🔵 Logo e identidad de la app */}
+        {/* Logo e identidad de la app */}
         <div
           className="d-flex align-items-center gap-2"
           style={{ cursor: "pointer" }}
-          onClick={irInicio} // 👈 Acción al hacer clic
+          onClick={irInicio} // Acción al hacer clic
         >
           <img
             src={logo}
@@ -44,7 +44,7 @@ function Encabezado({ monedas }) {
           <h3
             className="m-0 fw-bold"
             style={{
-              color: "#1d0c6dff",
+              color: "#f1f1f3ff",
               fontFamily: "'Poppins', sans-serif",
             }}
           >
@@ -52,22 +52,21 @@ function Encabezado({ monedas }) {
           </h3>
         </div>
 
-        {/* 💰 Monedas y botón de sesión */}
+        {/* Monedas y botón de sesión */}
         <div className="d-flex align-items-center gap-3">
           <Badge
             bg="warning"
             text="dark"
-            pill
-            style={{ fontSize: "1rem", padding: "08px 15px" }}
+            style={{ fontSize: "1rem", padding: "09px 20px" }}
           >
             💰 {monedas ?? 0} Monedas
           </Badge>
 
           <Button
-            variant="primary"
+            variant="success"
             onClick={cerrarSesion}
             style={{
-              borderRadius: "35px",
+              borderRadius: "50px",
               fontWeight: "600",
               padding: "8px 20px",
             }}
