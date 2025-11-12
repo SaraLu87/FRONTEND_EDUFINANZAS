@@ -1,8 +1,15 @@
+import Navbar from "./Navbar";
+import SeccionHero from "./SeccionHero";
+import SeccionAprendizaje from "./SeccionAprendizaje";
+import Footer from "../componentes/Footer";
+
 function Inicio() {
   return (
-    <div style={{ padding: 24, fontFamily: "Poppins, sans-serif" }}>
-      <h1>Pantalla de Inicio</h1>
-      <p>Aquí irá la presentación principal de EduFinanzas.</p>
+    <div style={{ fontFamily: "Poppins, sans-serif" }}>
+      <Navbar />
+      <SeccionHero />
+      <SeccionAprendizaje />
+      <Footer />
     </div>
   );
 }

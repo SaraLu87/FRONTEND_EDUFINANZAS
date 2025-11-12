@@ -2,7 +2,7 @@ import { Navbar, Container, Button, Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
-function Encabezado({ monedas }) {
+function Encabezado({ monedas, mostrarBotonPerfil, onClickPerfil }) {
   const navigate = useNavigate();
 
   // Cierra la sesión y limpia almacenamiento
@@ -20,7 +20,7 @@ function Encabezado({ monedas }) {
   return (
     <Navbar bg="primary" expand="lg" className="shadow-sm px-4">
       <Container fluid className="d-flex justify-content-between align-items-center">
-        
+
         {/* Logo e identidad de la app */}
         <div
           className="d-flex align-items-center gap-2"
@@ -52,7 +52,7 @@ function Encabezado({ monedas }) {
           </h3>
         </div>
 
-        {/* Monedas y botón de sesión */}
+        {/* Monedas, perfil y botón de sesión */}
         <div className="d-flex align-items-center gap-3">
           <Badge
             bg="warning"
@@ -61,6 +61,23 @@ function Encabezado({ monedas }) {
           >
             💰 {monedas ?? 0} Monedas
           </Badge>
+
+          {mostrarBotonPerfil && (
+            <Button
+              variant="info"
+              onClick={onClickPerfil}
+              style={{
+                borderRadius: "50px",
+                fontWeight: "600",
+                padding: "8px 20px",
+                backgroundColor: "#4f46e5",
+                border: "none",
+                color: "#ffffff"
+              }}
+            >
+              👤 Mi Perfil
+            </Button>
+          )}
 
           <Button
             variant="success"

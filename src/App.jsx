@@ -6,8 +6,12 @@ import { ProgresoProvider } from "./componentes/ProgresoContext";
 
 // Páginas principales
 import Registro from "./paginas/Registro";
+import Login from "./paginas/Login";
 import Inicio from "./paginas/Inicio";
 import Temas from "./paginas/Temas";
+import Perfil from "./paginas/Perfil";
+import PerfilAdministrador from "./paginas/PerfilAdministrador";
+import CrearReto from "./paginas/CrearReto";
 import RetoAhorro from "./paginas/RetoAhorro";
 import AhorroInfo from "./paginas/AhorroInfo";
 import AhorroDatos from "./paginas/AhorroDatos";
@@ -38,8 +42,12 @@ function App() {
 
             {/* Rutas principales */}
             <Route path="/registro" element={<Registro />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/inicio" element={<Inicio />} />
             <Route path="/temas" element={<Temas />} />
+            <Route path="/perfil" element={<Perfil />} />
+            <Route path="/perfil-administrador" element={<PerfilAdministrador />} />
+            <Route path="/crear-reto" element={<CrearReto />} />
 
             {/* Rutas de los retos de Ahorro */}
             <Route path="/ahorro" element={<RetoAhorro />} />
