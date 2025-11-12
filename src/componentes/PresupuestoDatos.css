@@ -1,0 +1,69 @@
+.presupuesto-datos-fondo {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.titulo-datos {
+  font-weight: 800;
+  color: #1e3a8a;
+  font-size: 2.2rem;
+}
+
+.subtitulo-datos {
+  font-weight: 500;
+  color: #475569;
+}
+
+.tarjeta-dato {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-dato:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo interno de las tarjetas */
+.tarjeta-dato .card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.tarjeta-dato .card-title {
+  font-size: 1.2rem;
+  color: #1d4ed8;
+}
+
+.tarjeta-dato .card-text {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.6;
+}
+
+/* Botón siguiente */
+.boton-siguiente {
+  border-radius: 25px;
+  font-weight: 600;
+  padding: 10px 25px;
+}
+
+/* 📱 Responsive */
+@media (max-width: 992px) {
+  .tarjeta-dato {
+    margin-bottom: 20px;
+  }
+
+  .titulo-datos {
+    font-size: 1.8rem;
+  }
+
+  .tarjeta-dato .card-title {
+    font-size: 1rem;
+  }
+}

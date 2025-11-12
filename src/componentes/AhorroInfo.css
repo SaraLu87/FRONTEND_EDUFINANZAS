@@ -1,0 +1,92 @@
+.ahorro-info-fondo {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #eef2ff 0%, #e0e7ff 50%, #c7d2fe 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  padding-bottom: 60px;
+}
+
+.titulo-ahorro {
+  font-weight: 800;
+  color: #3730a3;
+  font-size: 2.3rem;
+  margin-bottom: 40px;
+}
+
+.contenedor-animado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: nowrap;
+  position: relative;
+  min-height: 420px;
+  width: 100%;
+}
+
+/* Tarjetas animadas */
+.tarjeta-info {
+  width: 30%;
+  min-width: 280px;
+  padding: 25px;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  transition: all 0.5s ease;
+}
+
+.tarjeta-verde {
+  background: linear-gradient(135deg, #10b981, #22c55e);
+}
+
+.tarjeta-azul {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+.tarjeta-morada {
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+}
+
+.lista-razones {
+  list-style-type: "💰 ";
+  color: #fff;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Posiciones */
+.posicion-izquierda {
+  align-self: flex-start;
+}
+
+.posicion-centro {
+  align-self: center;
+}
+
+.posicion-derecha {
+  align-self: flex-end;
+}
+
+/* Botón siguiente */
+.boton-siguiente {
+  border-radius: 30px;
+  font-weight: 600;
+  padding: 10px 25px;
+}
+
+/* 📱 Responsivo */
+@media (max-width: 992px) {
+  .contenedor-animado {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tarjeta-info {
+    width: 85%;
+    text-align: center;
+  }
+}

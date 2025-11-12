@@ -1,0 +1,124 @@
+.reto-fondo {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #ecfdf5 0%, #e0f2fe 50%, #f3e8ff 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo-reto {
+  font-weight: 800;
+  color: #0f172a;
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
+
+.subtitulo-reto {
+  font-weight: 500;
+  color: #334155;
+}
+
+/* 💠 Círculos */
+.flujo-retos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 70px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.reto-circulo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 2;
+}
+
+.reto-circulo:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* 🎨 Colores coherentes con inversión */
+.circulo-azul {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+.circulo-verde {
+  background: linear-gradient(135deg, #10b981, #34d399);
+}
+
+.circulo-morado {
+  background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+}
+
+/* 🌈 Conector con degradado animado */
+.conector-efecto {
+  width: 120px;
+  height: 6px;
+  background: linear-gradient(90deg, #60a5fa, #34d399, #a78bfa);
+  border-radius: 10px;
+  animation: brillo 2.5s infinite linear;
+  position: relative;
+  top: 0;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+  z-index: 1;
+}
+
+@keyframes brillo {
+  0% {
+    opacity: 0.7;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.8);
+  }
+  100% {
+    opacity: 0.7;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+  }
+}
+
+/* 🧭 Instrucción */
+.texto-instruccion {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-top: 30px;
+}
+
+/* 📱 Responsive */
+@media (max-width: 992px) {
+  .flujo-retos {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .conector-efecto {
+    width: 5px;
+    height: 60px;
+    background: linear-gradient(180deg, #60a5fa, #34d399, #a78bfa);
+    border-radius: 50px;
+    animation: brillo 2.5s infinite linear;
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.7);
+  }
+
+  .reto-circulo {
+    width: 130px;
+    height: 130px;
+    font-size: 1rem;
+  }
+}

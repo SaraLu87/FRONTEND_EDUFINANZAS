@@ -1,0 +1,99 @@
+.seguridad-datos-fondo {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #e0f2fe 0%, #f0fdfa 50%, #ede9fe 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.titulo-datos {
+  font-weight: 800;
+  color: #0f172a;
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+}
+
+.subtitulo-datos {
+  color: #475569;
+  font-weight: 500;
+}
+
+/* 🟦 Grid general */
+.grid-datos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* 📘 Tarjetas */
+.tarjeta-dato {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  text-align: left;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.tarjeta-dato:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(79, 70, 229, 0.3);
+}
+
+.tarjeta-dato h3 {
+  color: #2563eb;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.tarjeta-dato p {
+  color: #334155;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Botón siguiente */
+.boton-siguiente {
+  margin-top: 40px;
+  border: none;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3);
+  transition: all 0.3s ease;
+}
+
+.boton-siguiente:hover {
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+}
+
+/* 📱 Responsive */
+@media (max-width: 992px) {
+  .grid-datos {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .tarjeta-dato {
+    padding: 20px;
+  }
+
+  .titulo-datos {
+    font-size: 1.9rem;
+  }
+
+  .tarjeta-dato h3 {
+    font-size: 1.1rem;
+  }
+}

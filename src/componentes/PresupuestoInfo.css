@@ -1,0 +1,92 @@
+.presupuesto-info-fondo {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #e0f2fe 0%, #f0fdfa 50%, #dbeafe 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo-presupuesto {
+  font-weight: 800;
+  color: #0f172a;
+  font-size: 2.3rem;
+  margin-bottom: 30px;
+}
+
+.contenedor-animado {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Tarjetas generales */
+.tarjeta-info {
+  width: 340px;
+  padding: 25px;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-info:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Colores personalizados */
+.tarjeta-verde {
+  background: linear-gradient(135deg, #10b981, #34d399);
+}
+
+.tarjeta-azul {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+}
+
+.tarjeta-amarilla {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+
+/* Posiciones */
+.posicion-izquierda {
+  align-self: flex-start;
+}
+.posicion-centro {
+  align-self: center;
+}
+.posicion-derecha {
+  align-self: flex-end;
+}
+
+/* Listas */
+.lista-razones {
+  list-style-type: "💡 ";
+  color: #f9fafb;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Botón */
+.boton-siguiente {
+  border-radius: 30px;
+  font-weight: 600;
+  padding: 10px 25px;
+}
+
+/* 📱 Responsive */
+@media (max-width: 992px) {
+  .contenedor-animado {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tarjeta-info {
+    width: 90%;
+  }
+}

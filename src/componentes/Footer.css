@@ -1,7 +1,7 @@
 .footer-edufinanzas {
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: linear-gradient(100deg, #1e293b 0%, #3174d1 100%);
   color: white;
-  padding: 60px 0 30px;
+  padding: 50px 0 30px;
   margin-top: 80px;
 }
 
@@ -11,6 +11,93 @@
   gap: 12px;
   margin-bottom: 20px;
 }
+
+------
+.footer-modern {
+  background-color: #0f172a; /* azul oscuro elegante */
+  color: #e2e8f0;
+  padding: 50px 0 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-modern h5 {
+  color: #facc15;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #334155;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.footer-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #38bdf8;
+  padding-left: 4px;
+}
+
+/* 🔹 Centrado visual de la segunda columna */
+.footer-centrado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 🔹 Íconos sociales actualizados */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: #e2e8f0;
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #38bdf8;
+  transform: scale(1.25);
+}
+
+.footer-linea {
+  border-color: rgba(255, 255, 255, 0.1);
+  margin: 30px 0 15px;
+}
+
+.copyright {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .footer-modern {
+    text-align: center;
+  }
+  .footer-centrado {
+    align-items: center;
+  }
+}
+
 
 .logo-icono {
   width: 50px;
@@ -24,88 +111,7 @@
 }
 
 .logo-texto {
-  font-size: 1.8rem;
+  font-size: 1.rem;
   font-weight: 800;
   margin: 0;
-  color: white;
-}
-
-.footer-descripcion {
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
-  font-size: 0.95rem;
-}
-
-.footer-titulo {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: white;
-}
-
-.footer-lista {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-lista li {
-  margin-bottom: 12px;
-}
-
-.footer-enlace {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
-}
-
-.footer-enlace:hover {
-  color: #10b981;
-  padding-left: 5px;
-}
-
-.footer-universidad {
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
-
-.btn-universidad {
-  display: inline-block;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: white;
-  padding: 10px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-}
-
-.btn-universidad:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-  color: white;
-}
-
-.footer-divisor {
-  border-color: rgba(255, 255, 255, 0.2);
-  margin: 40px 0 25px;
-}
-
-.footer-copyright {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-}
-
-@media (max-width: 768px) {
-  .footer-edufinanzas {
-    padding: 40px 0 20px;
-  }
-
-  .footer-titulo {
-    margin-top: 50px;
-  }
 }

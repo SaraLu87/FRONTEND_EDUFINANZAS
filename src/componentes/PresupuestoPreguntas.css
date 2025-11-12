@@ -1,0 +1,140 @@
+.preguntas-fondo {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #e0f2fe 0%, #f0fdfa 50%, #dbeafe 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo-preguntas {
+  font-weight: 800;
+  color: #1e3a8a;
+  font-size: 2.3rem;
+}
+
+.subtitulo-preguntas {
+  font-weight: 500;
+  color: #475569;
+}
+
+.tarjeta-pregunta {
+  background: #ffffff;
+  max-width: 850px;
+  width: 90%;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.texto-pregunta {
+  font-size: 1.3rem;
+  color: #0f172a;
+  text-align: left;
+}
+
+.opciones-contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+/* 🔘 Opciones en forma ovalada */
+.opcion-ovalada {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #f8fafc;
+  border: 2px solid transparent;
+  border-radius: 40px;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.opcion-ovalada:hover {
+  background: #e0f2fe;
+  border-color: #60a5fa;
+}
+
+/* 🔘 Circulito de selección */
+.radio-circulo {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #94a3b8;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.radio-circulo.activo {
+  border-color: #2563eb;
+  background-color: #bfdbfe;
+}
+
+.radio-punto {
+  width: 10px;
+  height: 10px;
+  background-color: #2563eb;
+  border-radius: 50%;
+}
+
+.letra-opcion {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #1e3a8a;
+  width: 20px;
+}
+
+.texto-opcion {
+  flex: 1;
+  color: #1f2937;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* 🔹 Cuando se selecciona */
+.opcion-ovalada.seleccionada {
+  border-color: #2563eb;
+  background: #bfdbfe;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.mensaje {
+  font-weight: 600;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+.boton-final {
+  border-radius: 30px;
+  padding: 10px 25px;
+  font-weight: 600;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .tarjeta-pregunta {
+    padding: 20px;
+  }
+
+  .titulo-preguntas {
+    font-size: 1.8rem;
+  }
+
+  .texto-pregunta {
+    font-size: 1.1rem;
+  }
+
+  .opcion-ovalada {
+    padding: 12px 15px;
+  }
+
+  .texto-opcion {
+    font-size: 0.95rem;
+  }
+}
