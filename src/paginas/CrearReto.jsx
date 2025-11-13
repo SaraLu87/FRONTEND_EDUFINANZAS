@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Form, Button, Badge } from "react-bootstrap";
+import axios from "axios";
+
 
 const CrearReto = () => {
   const navigate = useNavigate()
@@ -53,55 +55,81 @@ const CrearReto = () => {
     setOpciones(opciones.map(op => ({ ...op, esCorrecta: op.id === id })))
   }
 
-  const handleAgregarReto = () => {
+  const handleAgregarReto = async () => {
     if (!titulo || !descripcion || !contenido || !textoPregunta) {
-      alert("Por favor complete todos los campos")
-      return
+      alert("Por favor complete todos los campos");
+      return;
     }
 
-    const opcionesValidas = opciones.filter(op => op.texto.trim() !== "")
+    const opcionesValidas = opciones.filter(op => op.texto.trim() !== "");
     if (opcionesValidas.length < 2) {
-      alert("Debe agregar al menos 2 opciones de respuesta")
-      return
+      alert("Debe agregar al menos 2 opciones de respuesta");
+      return;
     }
 
-    const tieneCorrecta = opciones.some(op => op.esCorrecta && op.texto.trim() !== "")
-    if (!tieneCorrecta) {
-      alert("Debe seleccionar una respuesta correcta")
-      return
+    const correcta = opciones.find(op => op.esCorrecta && op.texto.trim() !== "");
+    if (!correcta) {
+      alert("Debe seleccionar una respuesta correcta");
+      return;
     }
 
+    // Crear objeto para enviar
     const nuevoReto = {
-      id: String(Date.now()),
-      titulo,
+      tipo_pregunta: "Opción múltiple",
+      nombre_reto: titulo,
+      id_tema: 1, // Puedes cambiarlo según el tema seleccionado
       descripcion,
-      contenido,
-      pregunta: {
-        texto: textoPregunta,
-        opciones: opcionesValidas,
-        tiempoLimite,
-        puntos,
-      },
-      fechaCreacion: new Date().toISOString().split("T")[0],
+      recompensa_monedas: puntos,
+      respuesta_uno: opciones[0]?.texto || "",
+      respuesta_dos: opciones[1]?.texto || "",
+      respuesta_tres: opciones[2]?.texto || "",
+      respuesta_cuatro: opciones[3]?.texto || "",
+      respuestaCorrecta: correcta.texto,
+      costo_monedas: 0,
+    };
+
+    try {
+      console.log("Datos enviados:", nuevoReto);
+      const res = await axios.post("http://127.0.0.1:8000/api/retos/", nuevoReto);
+      console.log("✅ Respuesta del backend:", res.data);
+      alert("✅ Reto guardado en la base de datos");
+    } catch (err) {
+      console.error("❌ Error al enviar reto:");
+      
+      if (err.response) {
+        console.log("Código de estado:", err.response.status);
+        console.log("Respuesta del backend:", err.response.data); // 👈 AQUÍ SE MUESTRA EL DETALLE REAL
+        alert("Error: " + JSON.stringify(err.response.data));
+      } else {
+        console.log("Mensaje de error:", err.message);
+      }
     }
 
-    console.log("Nuevo reto creado:", nuevoReto)
-    alert("¡Reto creado exitosamente!")
+
+
+    // try {
+    //   const res = await axios.post("http://127.0.0.1:8000/api/retos/", nuevoReto);
+    //   console.log("Respuesta del backend:", res.data);
+    //   alert("✅ Reto guardado en la base de datos");
+    // } catch (err) {
+    //   console.error("Error al enviar reto:", err);
+    //   alert("❌ No se pudo guardar el reto");
+    // }
 
     // Limpiar formulario
-    setTitulo("")
-    setDescripcion("")
-    setContenido("")
-    setTextoPregunta("")
+    setTitulo("");
+    setDescripcion("");
+    setContenido("");
+    setTextoPregunta("");
     setOpciones([
       { id: "1", texto: "", esCorrecta: false },
       { id: "2", texto: "", esCorrecta: false },
       { id: "3", texto: "", esCorrecta: false },
       { id: "4", texto: "", esCorrecta: false },
-    ])
-    setTiempoLimite(60)
-    setPuntos(100)
-  }
+    ]);
+    setTiempoLimite(60);
+    setPuntos(100);
+};
 
   return (
     <div
@@ -317,7 +345,7 @@ const CrearReto = () => {
                       >
                         <Form.Check
                           type="radio"
-                          name="respuestaCorrecta"
+                          name="respuesta_Correcta"
                           checked={opcion.esCorrecta}
                           onChange={() => handleOpcionCorrectaChange(opcion.id)}
                           style={{ transform: "scale(1.2)" }}
@@ -405,6 +433,7 @@ const CrearReto = () => {
         </Row>
       </Container>
     </div>
+    
   );
 };
 
