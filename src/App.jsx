@@ -49,6 +49,7 @@ function App() {
             <Route path="/perfil-administrador" element={<PerfilAdministrador />} />
             <Route path="/crear-reto" element={<CrearReto />} />
 
+
             {/* Rutas de los retos de Ahorro */}
             <Route path="/ahorro" element={<RetoAhorro />} />
             <Route path="/ahorro-info" element={<AhorroInfo />} />
