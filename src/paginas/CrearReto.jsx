@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Form, Button, Badge } from "react-bootstrap";
 import axios from "axios";
@@ -8,24 +8,20 @@ const CrearReto = () => {
   const navigate = useNavigate()
 
   // Lista de retos creados
-  const [retosCreados] = useState([
-    {
-      id: "1",
-      titulo: "Ahorro Básico",
-      descripcion: "Aprende los fundamentos del ahorro",
-      contenido: "Contenido del reto...",
-      pregunta: null,
-      fechaCreacion: "2025-01-15",
-    },
-    {
-      id: "2",
-      titulo: "Presupuesto Personal",
-      descripcion: "Crea tu primer presupuesto",
-      contenido: "Contenido del reto...",
-      pregunta: null,
-      fechaCreacion: "2025-02-10",
-    },
-  ])
+  const [retosCreados, setRetosCreados] = useState([]);
+
+  useEffect(() => {
+    const obtenerRetos = async () => {
+      try {
+        const res = await axios.get("http://127.0.0.1:8000/api/retos/");
+        setRetosCreados(res.data);
+      } catch (error) {
+        console.error("Error al obtener retos:", error);
+      }
+    };
+
+    obtenerRetos();
+  })
 
   // Datos del nuevo reto
   const [titulo, setTitulo] = useState("")
@@ -86,20 +82,17 @@ const CrearReto = () => {
       respuesta_cuatro: opciones[3]?.texto || "",
       respuestaCorrecta: correcta.texto,
       costo_monedas: 0,
-    };
+    }
 
     try {
       console.log("Datos enviados:", nuevoReto);
       const res = await axios.post("http://127.0.0.1:8000/api/retos/", nuevoReto);
       console.log("✅ Respuesta del backend:", res.data);
-      alert("✅ Reto guardado en la base de datos");
     } catch (err) {
       console.error("❌ Error al enviar reto:");
-      
       if (err.response) {
         console.log("Código de estado:", err.response.status);
         console.log("Respuesta del backend:", err.response.data); // 👈 AQUÍ SE MUESTRA EL DETALLE REAL
-        alert("Error: " + JSON.stringify(err.response.data));
       } else {
         console.log("Mensaje de error:", err.message);
       }
@@ -199,7 +192,7 @@ const CrearReto = () => {
                 <div>
                   {retosCreados.map((reto) => (
                     <div
-                      key={reto.id}
+                      key={reto.id_reto}
                       style={{
                         padding: "12px",
                         backgroundColor: "#f9fafb",
@@ -214,10 +207,7 @@ const CrearReto = () => {
                           marginBottom: "5px"
                         }}
                       >
-                        {reto.titulo}
-                      </div>
-                      <div style={{ fontSize: "0.85rem", color: "#6b7280" }}>
-                        📅 {new Date(reto.fechaCreacion).toLocaleDateString()}
+                        {reto.nombre_reto}
                       </div>
                     </div>
                   ))}
