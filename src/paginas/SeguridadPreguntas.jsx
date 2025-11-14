@@ -1,47 +1,46 @@
-import { Container, Button } from "react-bootstrap";
 import { useState } from "react";
+import { Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useMonedas } from "../componentes/MonedasContext";
 import { useProgreso } from "../componentes/ProgresoContext";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-import "../componentes/SeguridadPreguntas.css";
+import "../componentes/PreguntasGlobal.css";
 
 function SeguridadPreguntas() {
   const navigate = useNavigate();
-  const { monedas, ganarMonedas } = useMonedas();
+  const { ganarMonedas } = useMonedas();
   const { actualizarProgreso } = useProgreso();
 
   const preguntas = [
     {
       pregunta:
-        "Si recibes un mensaje que parece de tu banco y te pide hacer clic en un enlace para 'verificar tu cuenta' o si no la cierran, ¿qué deberías hacer?",
+        "Si recibes un mensaje que parece de tu banco pidiendo un enlace, ¿qué debes hacer?",
       opciones: [
-        "A) Clic inmediatamente en el enlace para evitar que cierren tu cuenta.",
-        "B) Ignorarlo, porque seguramente es un 'phishing' (trampa) que busca robar tus datos.",
-        "C) Darle el mensaje a un amigo para que él lo revise primero.",
+        "A) Hacer clic de inmediato",
+        "B) Ignorarlo. Es phishing",
+        "C) Pasárselo a un amigo",
       ],
-      correcta: 1,
+      respuestacorrecta: 1,
     },
     {
       pregunta:
-        "Quieres comprar algo en línea. ¿Qué es lo primero que deberías revisar para saber si la página es segura antes de poner tus datos de pago?",
+        "Antes de pagar en línea, ¿qué debes revisar en la página?",
       opciones: [
-        "A) Que tenga muchos colores bonitos.",
-        "B) Que la dirección web empiece con 'https://' y tenga un icono de candado cerrado.",
-        "C) Que te pida instalar un programa raro para poder comprar.",
+        "A) Que tenga colores bonitos",
+        "B) Que empiece por https:// y tenga candado",
+        "C) Que te pida instalar un programa raro",
       ],
-      correcta: 1,
+      respuestacorrecta: 1,
     },
     {
-      pregunta:
-        "¿Cuál de estas es la mejor opción para crear una contraseña súper fuerte para tus cuentas financieras?",
+      pregunta: "¿Cuál es una contraseña segura?",
       opciones: [
-        "A) Usar tu fecha de nacimiento o el nombre de tu mascota.",
-        "B) Usar una combinación de letras mayúsculas y minúsculas, números y símbolos (ej. M!Super$3gur@).",
-        "C) Usar la misma contraseña para todas tus aplicaciones y redes sociales.",
+        "A) Tu fecha de nacimiento",
+        "B) M!Super$3gur@",
+        "C) La misma en todas tus redes",
       ],
-      correcta: 1,
+      respuestacorrecta: 1,
     },
   ];
 
@@ -50,14 +49,9 @@ function SeguridadPreguntas() {
   const [respondidaCorrecta, setRespondidaCorrecta] = useState(false);
   const [mostrarFinal, setMostrarFinal] = useState(false);
 
-  const responder = (indice) => {
-    setSeleccion(indice);
-    if (indice === preguntas[preguntaActual].correcta) {
-      setRespondidaCorrecta(true);
-    } else {
-      alert("❌ Respuesta incorrecta. Intenta nuevamente.");
-      setRespondidaCorrecta(false);
-    }
+  const responder = (i) => {
+    setSeleccion(i);
+    setRespondidaCorrecta(i === preguntas[preguntaActual].respuestacorrecta);
   };
 
   const siguientePregunta = () => {
@@ -66,7 +60,7 @@ function SeguridadPreguntas() {
       setSeleccion(null);
       setRespondidaCorrecta(false);
     } else {
-      ganarMonedas(150);
+      ganarMonedas(60);
       actualizarProgreso("seguridad", 100);
       setMostrarFinal(true);
     }
@@ -74,10 +68,11 @@ function SeguridadPreguntas() {
 
   return (
     <>
-      <Encabezado monedas={monedas} />
+      <Encabezado />
 
-      <div className="seguridad-preguntas-fondo">
+      <div className="preguntas-fondo">
         <Container className="text-center py-5">
+
           {!mostrarFinal ? (
             <>
               <h1 className="titulo-pregunta">
@@ -90,7 +85,7 @@ function SeguridadPreguntas() {
                     key={i}
                     className={`opcion ${
                       seleccion === i
-                        ? i === preguntas[preguntaActual].correcta
+                        ? i === preguntas[preguntaActual].respuestacorrecta
                           ? "correcta"
                           : "incorrecta"
                         : ""
@@ -100,7 +95,7 @@ function SeguridadPreguntas() {
                     <div
                       className={`circulo ${
                         seleccion === i
-                          ? i === preguntas[preguntaActual].correcta
+                          ? i === preguntas[preguntaActual].respuestacorrecta
                             ? "marcado-correcto"
                             : "marcado-incorrecto"
                           : ""
@@ -122,21 +117,20 @@ function SeguridadPreguntas() {
               )}
             </>
           ) : (
-            <div className="felicitaciones">
-              <h2>🏆 ¡Felicidades, has completado todos los temas! 🎉</h2>
-              <p>
-                Has alcanzado la meta final y te has convertido en un
-                <strong> Súper Héroe Financiero Digital 🦸‍♂️🦸‍♀️</strong>.
-              </p>
+            <div className="final-preguntas">
+              <h2>🏆 ¡Felicidades, completaste Seguridad Financiera!</h2>
+              <p>Eres oficialmente un Superhéroe Digital 🦸‍♀️🦸‍♂️</p>
+
               <Button
                 variant="primary"
                 className="boton-volver"
                 onClick={() => navigate("/temas")}
               >
-                Volver al Inicio 🏠
+                Volver al inicio
               </Button>
             </div>
           )}
+
         </Container>
       </div>
 

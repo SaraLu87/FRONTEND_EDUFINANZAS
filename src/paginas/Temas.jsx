@@ -16,7 +16,7 @@ function Temas() {
   const navigate = useNavigate();
   const [mostrarPerfil, setMostrarPerfil] = useState(false);
 
-  // 🧠 Traer datos globales
+  // Traer datos globales
   const { monedas, ganarMonedas, gastarMonedas } = useMonedas();
   const { progreso, actualizarProgreso, obtenerProgreso } = useProgreso();
 
@@ -58,7 +58,7 @@ function Temas() {
   const leccionesCompletadas = leccionesData.filter((l) => l.completada).length;
   const retosCompletados = 8;
 
-  // ✅ Cálculo seguro del progreso total
+  //  Cálculo seguro del progreso total
   const progresoTotal = Math.min(
     ((progreso?.ahorro || 0) +
       (progreso?.presupuesto || 0) +
@@ -67,7 +67,7 @@ function Temas() {
     100
   );
 
-  // 🚀 Iniciar un reto
+  // Iniciar un reto
   const iniciarReto = (tema) => {
     if ((progreso[tema.toLowerCase()] || 0) === 0 && monedas < 180) {
       alert("💰 Necesitas al menos 120 monedas para desbloquear este tema.");
@@ -82,7 +82,7 @@ function Temas() {
     navigate(`/${tema.toLowerCase()}`);
   };
 
-  // 🏅 Completar reto y ganar monedas
+  // Completar reto y ganar monedas
   const completarReto = (tema) => {
     ganarMonedas(60);
     const nuevoProgreso = Math.min((progreso[tema.toLowerCase()] || 0) + 33.3, 100);
@@ -143,7 +143,7 @@ function Temas() {
             Descubre el mundo de las finanzas personales con retos divertidos.
           </p>
 
-        {/* ✅ Barra de progreso global moderna */}
+        {/* Barra de progreso global moderna */}
         <div className="my-4">
           <p className="fw-semibold mb-3">Tu progreso de aprendizaje</p>
 
@@ -187,7 +187,7 @@ function Temas() {
           </div>
         </div>
 
-        {/* 🧩 Cuadros de temas */}
+        {/* Cuadros de temas */}
         <Row xs={1} md={2} lg={4} className="g-4">
           {[
             { titulo: "Ahorro", img: ahorroImg },

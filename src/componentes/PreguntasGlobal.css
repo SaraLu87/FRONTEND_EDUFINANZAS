@@ -1,0 +1,124 @@
+/* 🎨 FONDO GENERAL */
+.preguntas-fondo {
+  min-height: 100vh;
+  padding: 40px 10px;
+  background: linear-gradient(140deg, #eef2ff, #e0e7ff, #c7d2fe);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* 🎯 TÍTULO DE LA PREGUNTA */
+.titulo-pregunta {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1e1b4b;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+/* 🟣 CONTENEDOR DE OPCIONES */
+.contenedor-opciones {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* 🟦 OPCIÓN - ÓVALO ALARGADO */
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 14px 18px;
+  border-radius: 40px;
+  border: 3px solid #c7c7c7;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Efecto al pasar el mouse */
+.opcion:hover {
+  transform: scale(1.03);
+  border-color: #6366f1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* 🔘 CÍRCULO DE SELECCIÓN */
+.circulo {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 3px solid #999;
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+/* 🟢 MARCADO CORRECTO */
+.marcado-correcto {
+  background-color: #22c55e;
+  border-color: #15803d;
+}
+
+/* 🔴 MARCADO INCORRECTO */
+.marcado-incorrecto {
+  background-color: #ef4444;
+  border-color: #b91c1c;
+}
+
+/* 💚 BORDE COMPLETO EN LA OPCIÓN CORRECTA */
+.opcion.correcta {
+  border-color: #22c55e;
+  background: #dcfce7;
+}
+
+/* ❤️ OPCIÓN INCORRECTA */
+.opcion.incorrecta {
+  border-color: #ef4444;
+  background: #fee2e2;
+}
+
+/* BOTÓN SIGUIENTE */
+.boton-siguiente {
+  margin-top: 15px;
+  padding: 8px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+}
+
+/* 🌟 PANTALLA FINAL */
+.final-preguntas,
+.felicitaciones {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* BOTÓN VOLVER */
+.boton-volver {
+  margin-top: 15px;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .titulo-pregunta {
+    font-size: 1.3rem;
+  }
+
+  .opcion {
+    font-size: 0.9rem;
+    padding: 12px 14px;
+  }
+}

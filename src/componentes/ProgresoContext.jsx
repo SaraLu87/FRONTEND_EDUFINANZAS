@@ -13,7 +13,7 @@ export function ProgresoProvider({ children }) {
     localStorage.setItem("progreso", JSON.stringify(progreso));
   }, [progreso]);
 
-  // ✅ Actualiza el progreso de un tema específico
+  // Actualiza el progreso de un tema específico
   const actualizarProgreso = (tema, nuevoPorcentaje) => {
     setProgreso((prev) => ({
       ...prev,
@@ -21,12 +21,12 @@ export function ProgresoProvider({ children }) {
     }));
   };
 
-  // ✅ Obtener progreso actual de un tema
+  // Obtener progreso actual de un tema
   const obtenerProgreso = (tema) => {
     return progreso[tema] || 0;
   };
 
-  // ✅ Reiniciar todo el progreso
+  // Reiniciar todo el progreso
   const reiniciarProgreso = () => {
     setProgreso({});
     localStorage.removeItem("progreso");

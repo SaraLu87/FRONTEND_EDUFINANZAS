@@ -10,12 +10,12 @@
 .titulo-reto {
   font-weight: 800;
   color: #1d0c6dff;
-  font-size: 2.4rem;
-  margin-bottom: 10px;
+  font-size: 4rem;
+  margin-bottom: 0px;
 }
 
 .subtitulo-reto {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   color: #374151;
 }
 
@@ -23,27 +23,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 60px;
+  gap: 50px;
   flex-wrap: wrap;
   position: relative;
-  margin-top: 50px;
+  margin-top: 0px;
 }
 
 .reto-circulo {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: rgb(10, 10, 10);
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
-  padding: 10px;
+  padding: 70px;
 }
 
 .reto-circulo:hover {
@@ -66,9 +66,9 @@
 /* Curvas que conectan los círculos */
 .conector-curvo {
   width: 100px;
-  height: 50px;
-  border: 4px solid #94a3b8;
-  border-color: #94a3b8 transparent transparent transparent;
+  height: 0px;
+  border: 8px solid #3481ec;
+  border-color: #6194db transparent transparent transparent;
   border-radius: 100px 100px 0 0;
   margin-top: -80px;
   transform: translateY(40px);

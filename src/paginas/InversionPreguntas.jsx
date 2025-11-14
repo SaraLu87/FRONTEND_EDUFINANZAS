@@ -1,138 +1,137 @@
 import { useState } from "react";
 import { Container, Button } from "react-bootstrap";
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useMonedas } from "../componentes/MonedasContext";
 import { useProgreso } from "../componentes/ProgresoContext";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-import "../componentes/InversionPreguntas.css";
+import "../componentes/PreguntasGlobal.css";
 
 function InversionPreguntas() {
   const navigate = useNavigate();
-  const { monedas, ganarMonedas } = useMonedas();
+  const { ganarMonedas } = useMonedas();
   const { progreso, actualizarProgreso } = useProgreso();
 
   const preguntas = [
     {
-      id: 1,
-      texto: 'Si "Ahorrar" es guardar tu dinero, ¿qué significa "Invertir"?',
+      pregunta: "Si 'Ahorrar' es guardar tu dinero, ¿qué significa 'Invertir'?",
       opciones: [
-        "Gastar tu dinero en algo que te dé mucha diversión hoy.",
-        "Poner tu dinero a trabajar para que genere más dinero en el futuro.",
-        "Dejar tu dinero guardado bajo el colchón sin que haga nada.",
+        "A) Gastar tu dinero en algo divertido hoy",
+        "B) Poner tu dinero a trabajar para que genere más en el futuro",
+        "C) Guardarlo debajo del colchón",
       ],
-      correcta: 1,
+      respuestacorrecta: 1,
     },
     {
-      id: 2,
-      texto:
-        '¿Cuál es el "superpoder" extra que tienen los jóvenes al invertir, que los adultos ya no tienen tanto?',
+      pregunta:
+        "¿Cuál es el superpoder que tienen los jóvenes cuando invierten?",
       opciones: [
-        "La suerte, porque son más jóvenes.",
-        "La capacidad de comprar muchas cosas al instante.",
-        "El tiempo, porque su dinero tiene más años para crecer y multiplicarse.",
+        "A) La suerte",
+        "B) Comprar más cosas rápido",
+        "C) El tiempo: su dinero crece por más años",
       ],
-      correcta: 2,
+      respuestacorrecta: 2,
     },
     {
-      id: 3,
-      texto:
-        'Cuando hablamos de "Riesgo" en la inversión, ¿a qué nos referimos?',
+      pregunta: "¿Qué significa 'riesgo' al invertir?",
       opciones: [
-        "A que siempre vas a perder todo tu dinero.",
-        "A la posibilidad de que la inversión no salga como esperas y puedas perder una parte de tu dinero.",
-        "A que siempre vas a ganar muchísimo dinero muy rápido.",
+        "A) Siempre perderás todo",
+        "B) Puedes perder una parte si las cosas no salen como esperas",
+        "C) Siempre ganarás mucho y rápido",
       ],
-      correcta: 1,
+      respuestacorrecta: 1,
     },
   ];
 
-  const [indice, setIndice] = useState(0);
+  const [preguntaActual, setPreguntaActual] = useState(0);
   const [seleccion, setSeleccion] = useState(null);
-  const [aciertos, setAciertos] = useState(0);
+  const [respondidaCorrecta, setRespondidaCorrecta] = useState(false);
+  const [mostrarFinal, setMostrarFinal] = useState(false);
 
-  const manejarRespuesta = () => {
-    if (seleccion === null) {
-      alert("Selecciona una respuesta antes de continuar.");
-      return;
-    }
+  const responder = (i) => {
+    setSeleccion(i);
+    setRespondidaCorrecta(i === preguntas[preguntaActual].respuestacorrecta);
+  };
 
-    const correcta = preguntas[indice].correcta;
-
-    if (seleccion === correcta) {
-      setAciertos(aciertos + 1);
-      if (indice < preguntas.length - 1) {
-        setIndice(indice + 1);
-        setSeleccion(null);
-      } else {
-        // ✅ Completó todas las preguntas correctamente
-        ganarMonedas(60);
-        const nuevoProgreso = Math.min(progreso.inversion + 33.3, 100);
-        actualizarProgreso("inversion", nuevoProgreso);
-        alert("🎉 ¡Excelente! Has completado el reto de inversión.");
-        navigate("/temas");
-      }
+  const siguientePregunta = () => {
+    if (preguntaActual < preguntas.length - 1) {
+      setPreguntaActual(preguntaActual + 1);
+      setSeleccion(null);
+      setRespondidaCorrecta(false);
     } else {
-      alert("❌ Respuesta incorrecta. ¡Intenta nuevamente!");
+      ganarMonedas(60);
+      actualizarProgreso("inversion", Math.min(progreso.inversion + 33.3, 100));
+      setMostrarFinal(true);
     }
   };
 
-  const preguntaActual = preguntas[indice];
-
   return (
     <>
-      <Encabezado monedas={monedas} />
+      <Encabezado />
 
-      <motion.div
-        className="inversion-preguntas-fondo"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2 }}
-      >
+      <div className="preguntas-fondo">
         <Container className="text-center py-5">
-          <h1 className="titulo-preguntas">💡 Desafía tu Lógica de Inversor</h1>
 
-          <motion.div
-            className="tarjeta-pregunta"
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="texto-pregunta">{preguntaActual.texto}</h3>
+          {!mostrarFinal ? (
+            <>
+              <h1 className="titulo-pregunta">
+                {preguntas[preguntaActual].pregunta}
+              </h1>
 
-            <div className="opciones">
-              {preguntaActual.opciones.map((op, i) => (
-                <label
-                  key={i}
-                  className={`opcion ${
-                    seleccion === i ? "seleccionada" : ""
-                  }`}
+              <div className="contenedor-opciones">
+                {preguntas[preguntaActual].opciones.map((opcion, i) => (
+                  <div
+                    key={i}
+                    className={`opcion ${
+                      seleccion === i
+                        ? i === preguntas[preguntaActual].respuestacorrecta
+                          ? "correcta"
+                          : "incorrecta"
+                        : ""
+                    }`}
+                    onClick={() => responder(i)}
+                  >
+                    <div
+                      className={`circulo ${
+                        seleccion === i
+                          ? i === preguntas[preguntaActual].respuestacorrecta
+                            ? "marcado-correcto"
+                            : "marcado-incorrecto"
+                          : ""
+                      }`}
+                    ></div>
+                    <span>{opcion}</span>
+                  </div>
+                ))}
+              </div>
+
+              {respondidaCorrecta && (
+                <Button
+                  variant="success"
+                  className="boton-siguiente"
+                  onClick={siguientePregunta}
                 >
-                  <input
-                    type="radio"
-                    name={`pregunta-${preguntaActual.id}`}
-                    checked={seleccion === i}
-                    onChange={() => setSeleccion(i)}
-                  />
-                  <span className="letra-opcion">
-                    {String.fromCharCode(97 + i) + ")"}
-                  </span>
-                  <span className="texto-opcion">{op}</span>
-                </label>
-              ))}
-            </div>
+                  Siguiente ➡️
+                </Button>
+              )}
+            </>
+          ) : (
+            <div className="final-preguntas">
+              <h2>🎉 ¡Completaste el reto de Inversión!</h2>
+              <p>Ganaste 60 monedas y avanzaste en tu progreso.</p>
 
-            <Button
-              variant="success"
-              onClick={manejarRespuesta}
-              className="boton-siguiente"
-            >
-              {indice < preguntas.length - 1 ? "Siguiente ➡️" : "Finalizar 🏁"}
-            </Button>
-          </motion.div>
+              <Button
+                variant="primary"
+                className="boton-volver"
+                onClick={() => navigate("/temas")}
+              >
+                Volver al inicio
+              </Button>
+            </div>
+          )}
+
         </Container>
-      </motion.div>
+      </div>
 
       <Footer />
     </>

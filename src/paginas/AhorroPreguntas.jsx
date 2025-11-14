@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Container, Button, Card } from "react-bootstrap";
-import { motion } from "framer-motion";
+import { Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useMonedas } from "../componentes/MonedasContext";
 import { useProgreso } from "../componentes/ProgresoContext";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-import "../componentes/AhorroPreguntas.css";
+import "../componentes/PreguntasGlobal.css";
 
 function AhorroPreguntas() {
   const navigate = useNavigate();
@@ -15,130 +14,124 @@ function AhorroPreguntas() {
 
   const preguntas = [
     {
-      texto: "¿Qué significa ahorrar?",
+      pregunta: "¿Qué significa ahorrar?",
       opciones: [
-        "Gastar todo el dinero en cosas que quiero",
-        "Guardar una parte del dinero para usarla después",
-        "Pedir dinero prestado para comprar más cosas",
+        "A) Gastar todo el dinero en cosas que quiero",
+        "B) Guardar una parte del dinero para usarla después",
+        "C) Pedir dinero prestado para comprar más cosas",
       ],
-      correcta: 1,
+      respuestacorrecta: 1,
     },
     {
-      texto: "¿Cuál es la mejor forma de empezar a ahorrar?",
+      pregunta: "¿Cuál es la mejor forma de empezar a ahorrar?",
       opciones: [
-        "Esperar a tener mucho dinero",
-        "Ahorrar una parte de lo que gano o recibo",
-        "Usar todo el dinero y después preocuparse",
+        "A) Esperar a tener mucho dinero",
+        "B) Ahorrar una parte de lo que gano o recibo",
+        "C) Usar todo el dinero y después preocuparse",
       ],
-      correcta: 1,
+      respuestacorrecta: 1,
     },
     {
-      texto: "¿Por qué es importante ahorrar?",
+      pregunta: "¿Por qué es importante ahorrar?",
       opciones: [
-        "Porque da tranquilidad y ayuda a cumplir metas",
-        "Porque es aburrido y no sirve para nada",
-        "Porque así puedo gastar más",
+        "A) Porque da tranquilidad y ayuda a cumplir metas",
+        "B) Porque es aburrido y no sirve para nada",
+        "C) Porque así puedo gastar más",
       ],
-      correcta: 0,
+      respuestacorrecta: 0,
     },
   ];
 
-  const [indice, setIndice] = useState(0);
+  const [preguntaActual, setPreguntaActual] = useState(0);
   const [seleccion, setSeleccion] = useState(null);
-  const [mensaje, setMensaje] = useState("");
-  const [terminado, setTerminado] = useState(false);
+  const [respondidaCorrecta, setRespondidaCorrecta] = useState(false);
+  const [mostrarFinal, setMostrarFinal] = useState(false);
 
-  const verificarRespuesta = () => {
-    if (seleccion === null) {
-      setMensaje("⚠️ Debes seleccionar una respuesta.");
-      return;
-    }
+  const responder = (i) => {
+    setSeleccion(i);
+    setRespondidaCorrecta(i === preguntas[preguntaActual].respuestacorrecta);
+  };
 
-    if (seleccion === preguntas[indice].correcta) {
-      setMensaje("✅ ¡Correcto!");
-      if (indice < preguntas.length - 1) {
-        setTimeout(() => {
-          setSeleccion(null);
-          setIndice(indice + 1);
-          setMensaje("");
-        }, 1200);
-      } else {
-        // Terminó todas correctamente 🎉
-        setMensaje("🎉 ¡Excelente! Has completado el reto de ahorro.");
-        setTerminado(true);
-        ganarMonedas(60);
-        actualizarProgreso("ahorro", Math.min(progreso.ahorro + 33.3, 100));
-      }
+  const siguientePregunta = () => {
+    if (preguntaActual < preguntas.length - 1) {
+      setPreguntaActual(preguntaActual + 1);
+      setSeleccion(null);
+      setRespondidaCorrecta(false);
     } else {
-      setMensaje("❌ Respuesta incorrecta. ¡Intenta nuevamente!");
+      ganarMonedas(60);
+      actualizarProgreso("ahorro", Math.min(progreso.ahorro + 33.3, 100));
+      setMostrarFinal(true);
     }
   };
 
   return (
     <>
       <Encabezado />
-      <motion.div
-        className="preguntas-fondo"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
+
+      <div className="preguntas-fondo">
         <Container className="text-center py-5">
-          <h1 className="titulo-preguntas">🧩 Reto de Preguntas: Ahorro</h1>
-          {!terminado ? (
-            <motion.div
-              key={indice}
-              initial={{ y: 40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Card className="tarjeta-pregunta mx-auto shadow">
-                <Card.Body>
-                  <h4 className="pregunta-texto">{preguntas[indice].texto}</h4>
-                  <div className="opciones-container">
-                    {preguntas[indice].opciones.map((opcion, i) => (
-                      <motion.div
-                        key={i}
-                        whileHover={{ scale: 1.05 }}
-                        className={`opcion ${
-                          seleccion === i ? "seleccionada" : ""
-                        }`}
-                        onClick={() => setSeleccion(i)}
-                      >
-                        {opcion}
-                      </motion.div>
-                    ))}
-                  </div>
-                  <p className="mensaje">{mensaje}</p>
-                  <Button variant="success" className="mt-3" onClick={verificarRespuesta}>
-                    Confirmar
-                  </Button>
-                </Card.Body>
-              </Card>
-            </motion.div>
-          ) : (
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1 }}
-            >
-              <Card className="tarjeta-final mx-auto shadow">
-                <Card.Body>
-                  <h3>🎯 ¡Completaste el reto de Ahorro!</h3>
-                  <p>Has ganado 60 monedas y avanzado en tu progreso.</p>
-                  <Button
-                    variant="primary"
-                    className="mt-3"
-                    onClick={() => navigate("/temas")}
+
+          {!mostrarFinal ? (
+            <>
+              <h1 className="titulo-pregunta">
+                {preguntas[preguntaActual].pregunta}
+              </h1>
+
+              <div className="contenedor-opciones">
+                {preguntas[preguntaActual].opciones.map((opcion, i) => (
+                  <div
+                    key={i}
+                    className={`opcion ${
+                      seleccion === i
+                        ? i === preguntas[preguntaActual].respuestacorrecta
+                          ? "correcta"
+                          : "incorrecta"
+                        : ""
+                    }`}
+                    onClick={() => responder(i)}
                   >
-                    Ir al siguiente tema ➡️
-                  </Button>
-                </Card.Body>
-              </Card>
-            </motion.div>
+                    <div
+                      className={`circulo ${
+                        seleccion === i
+                          ? i === preguntas[preguntaActual].respuestacorrecta
+                            ? "marcado-correcto"
+                            : "marcado-incorrecto"
+                          : ""
+                      }`}
+                    ></div>
+                    <span>{opcion}</span>
+                  </div>
+                ))}
+              </div>
+
+              {respondidaCorrecta && (
+                <Button
+                  variant="success"
+                  className="boton-siguiente"
+                  onClick={siguientePregunta}
+                >
+                  Siguiente ➡️
+                </Button>
+              )}
+            </>
+          ) : (
+            <div className="final-preguntas">
+              <h2>🎉 ¡Completaste el reto de Ahorro!</h2>
+              <p>Ganaste 60 monedas y avanzaste en tu progreso 🚀</p>
+
+              <Button
+                variant="primary"
+                className="boton-volver"
+                onClick={() => navigate("/temas")}
+              >
+                Volver al inicio
+              </Button>
+            </div>
           )}
+
         </Container>
-      </motion.div>
+      </div>
+
       <Footer />
     </>
   );

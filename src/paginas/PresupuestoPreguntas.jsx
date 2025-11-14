@@ -1,159 +1,141 @@
-import { Container, Card, Button } from "react-bootstrap";
-import { motion } from "framer-motion";
 import { useState } from "react";
+import { Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useMonedas } from "../componentes/MonedasContext";
 import { useProgreso } from "../componentes/ProgresoContext";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-import "../componentes/PresupuestoPreguntas.css";
+import "../componentes/PreguntasGlobal.css";
 
 function PresupuestoPreguntas() {
   const navigate = useNavigate();
-  const { monedas, ganarMonedas } = useMonedas();
+  const { ganarMonedas } = useMonedas();
   const { progreso, actualizarProgreso } = useProgreso();
 
   const preguntas = [
     {
-      id: 1,
-      texto:
-        "Si tu mesada es de $30.000 COP a la semana, ¿cuál de estas opciones muestra que estás usando un Presupuesto Personal?",
+      pregunta:
+        "Si tu mesada es de $30.000 COP a la semana, ¿cuál de estas opciones es un Presupuesto Personal?",
       opciones: [
-        "Gastas los $30.000 en lo primero que se te antoja, sin pensar.",
-        "Decides que $10.000 son para transporte, $10.000 para salidas y $10.000 los guardas para tu ahorro.",
-        "Le pides más dinero a tus padres antes de que termine la semana.",
+        "A) Gastar todo sin pensar",
+        "B) 10.000 transporte, 10.000 salidas, 10.000 ahorro",
+        "C) Pedir más dinero antes de que termine la semana",
       ],
-      correcta: 1,
+      respuestacorrecta: 1,
     },
     {
-      id: 2,
-      texto: "¿Cuál es el principal beneficio de tener un Presupuesto Personal?",
+      pregunta: "¿Cuál es el principal beneficio de tener un Presupuesto?",
       opciones: [
-        "Te prohíbe comprar cualquier cosa divertida.",
-        "Te dice exactamente cuánto dinero tienen tus amigos.",
-        "Te ayuda a saber dónde va tu dinero y te da control para alcanzar tus metas sin quedarte sin fondos.",
+        "A) No te deja comprar nada divertido",
+        "B) Saber a dónde va tu dinero y alcanzar tus metas",
+        "C) Controlar el dinero de tus amigos",
       ],
-      correcta: 2,
+      respuestacorrecta: 1,
     },
     {
-      id: 3,
-      texto:
-        'Tu amigo te dice: "¡Uff, siempre me quedo sin dinero antes de que termine el mes y no sé por qué!". ¿Qué le recomendarías hacer primero?',
+      pregunta:
+        "Tu amigo siempre se queda sin dinero. ¿Qué debería hacer primero?",
       opciones: [
-        "Que gane más dinero, sin importar cómo.",
-        "Que haga un Presupuesto Personal para ver en qué está gastando y pueda organizarse.",
-        "Que deje de salir con sus amigos para no gastar nada.",
+        "A) Ganar más dinero",
+        "B) Hacer un Presupuesto Personal",
+        "C) No volver a salir",
       ],
-      correcta: 1,
+      respuestacorrecta: 1,
     },
   ];
 
-  const [indice, setIndice] = useState(0);
-  const [respuestaSeleccionada, setRespuestaSeleccionada] = useState(null);
-  const [mensaje, setMensaje] = useState("");
-  const [completado, setCompletado] = useState(false);
+  const [preguntaActual, setPreguntaActual] = useState(0);
+  const [seleccion, setSeleccion] = useState(null);
+  const [respondidaCorrecta, setRespondidaCorrecta] = useState(false);
+  const [mostrarFinal, setMostrarFinal] = useState(false);
 
-  const validarRespuesta = () => {
-    const pregunta = preguntas[indice];
-    if (respuestaSeleccionada === pregunta.correcta) {
-      if (indice < preguntas.length - 1) {
-        setMensaje("✅ ¡Correcto! Vamos con la siguiente pregunta...");
-        setTimeout(() => {
-          setIndice(indice + 1);
-          setRespuestaSeleccionada(null);
-          setMensaje("");
-        }, 1200);
-      } else {
-        // ✅ Reto completado
-        setMensaje("🎉 ¡Has completado todas las preguntas!");
-        setCompletado(true);
-        ganarMonedas(60);
-        const nuevoProgreso = Math.min(progreso.presupuesto + 33.3, 100);
-        actualizarProgreso("presupuesto", nuevoProgreso);
-      }
+  const responder = (i) => {
+    setSeleccion(i);
+    setRespondidaCorrecta(i === preguntas[preguntaActual].respuestacorrecta);
+  };
+
+  const siguientePregunta = () => {
+    if (preguntaActual < preguntas.length - 1) {
+      setPreguntaActual(preguntaActual + 1);
+      setSeleccion(null);
+      setRespondidaCorrecta(false);
     } else {
-      setMensaje("❌ Respuesta incorrecta. Intenta nuevamente.");
+      ganarMonedas(60);
+      actualizarProgreso(
+        "presupuesto",
+        Math.min(progreso.presupuesto + 33.3, 100)
+      );
+      setMostrarFinal(true);
     }
   };
 
   return (
     <>
-      <Encabezado monedas={monedas} />
+      <Encabezado />
 
-      <motion.div
-        className="preguntas-fondo"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
+      <div className="preguntas-fondo">
         <Container className="text-center py-5">
-          <h1 className="titulo-preguntas">🧩 Preguntas del Presupuesto Personal</h1>
-          <h5 className="subtitulo-preguntas mb-5 text-muted">
-            ¡Pon a prueba tu habilidad de entrenador financiero!
-          </h5>
 
-          <Card className="tarjeta-pregunta shadow-lg border-0 rounded-4 p-4 mx-auto">
-            <Card.Body>
-              <motion.h4
-                className="texto-pregunta fw-bold mb-4"
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-              >
-                {preguntas[indice].texto}
-              </motion.h4>
+          {!mostrarFinal ? (
+            <>
+              <h1 className="titulo-pregunta">
+                {preguntas[preguntaActual].pregunta}
+              </h1>
 
-              <div className="opciones-contenedor">
-                {preguntas[indice].opciones.map((opcion, i) => {
-                  const letras = ["A", "B", "C"];
-                  const seleccionada = respuestaSeleccionada === i;
-                  return (
-                    <motion.div
-                      key={i}
-                      whileHover={{ scale: 1.02 }}
-                      onClick={() => setRespuestaSeleccionada(i)}
-                      className={`opcion-ovalada ${seleccionada ? "seleccionada" : ""}`}
-                    >
-                      <div className={`radio-circulo ${seleccionada ? "activo" : ""}`}>
-                        {seleccionada && <div className="radio-punto"></div>}
-                      </div>
-                      <span className="letra-opcion">{letras[i]}.</span>
-                      <span className="texto-opcion">{opcion}</span>
-                    </motion.div>
-                  );
-                })}
+              <div className="contenedor-opciones">
+                {preguntas[preguntaActual].opciones.map((opcion, i) => (
+                  <div
+                    key={i}
+                    className={`opcion ${
+                      seleccion === i
+                        ? i === preguntas[preguntaActual].respuestacorrecta
+                          ? "correcta"
+                          : "incorrecta"
+                        : ""
+                    }`}
+                    onClick={() => responder(i)}
+                  >
+                    <div
+                      className={`circulo ${
+                        seleccion === i
+                          ? i === preguntas[preguntaActual].respuestacorrecta
+                            ? "marcado-correcto"
+                            : "marcado-incorrecto"
+                          : ""
+                      }`}
+                    ></div>
+                    <span>{opcion}</span>
+                  </div>
+                ))}
               </div>
 
-              {mensaje && <p className="mensaje mt-4">{mensaje}</p>}
+              {respondidaCorrecta && (
+                <Button
+                  variant="success"
+                  className="boton-siguiente"
+                  onClick={siguientePregunta}
+                >
+                  Siguiente ➡️
+                </Button>
+              )}
+            </>
+          ) : (
+            <div className="final-preguntas">
+              <h2>🎉 ¡Completaste el reto de Presupuesto!</h2>
+              <p>Ganaste 60 monedas y avanzaste en tu progreso.</p>
 
               <Button
                 variant="primary"
-                className="mt-4"
-                onClick={validarRespuesta}
-                disabled={respuestaSeleccionada === null}
+                className="boton-volver"
+                onClick={() => navigate("/temas")}
               >
-                Responder
+                Volver al inicio
               </Button>
+            </div>
+          )}
 
-              {completado && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="mt-4"
-                >
-                  <Button
-                    variant="success"
-                    onClick={() => navigate("/temas")}
-                    className="boton-final"
-                  >
-                    Finalizar ✅
-                  </Button>
-                </motion.div>
-              )}
-            </Card.Body>
-          </Card>
         </Container>
-      </motion.div>
+      </div>
 
       <Footer />
     </>
