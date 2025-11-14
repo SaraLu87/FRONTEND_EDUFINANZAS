@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { Container, Row, Col, Card, Button, Form, ProgressBar, Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useMonedas } from "../componentes/MonedasContext";
 import { useProgreso } from "../componentes/ProgresoContext";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-
+import axios from "axios";
 import ahorroImg from "../assets/ahorro.png";
 import presupuestoImg from "../assets/presupuesto.png";
 import inversionImg from "../assets/inversion.png";
@@ -30,57 +30,47 @@ function Temas() {
     fotoPerfil: logo,
   });
   const [datosEditados, setDatosEditados] = useState({ ...datosUsuario });
+  const [leccionesData, setTemasCreados] = useState([]);
+  
+  useEffect(() => {
+    const obtenerTemas = async () => {
+      try {
+        const res = await axios.get("http://127.0.0.1:8000/api/temas/");
+        setTemasCreados(res.data);
+      } catch (error) {
+        console.error("Error al obtener retos:", error);
+      }
+    };
+    obtenerTemas();
+  }, []);
 
-  // Lecciones con progreso del contexto
-  const leccionesData = [
-    {
-      nombre: "Ahorro Inteligente",
-      completada: obtenerProgreso("ahorro") === 100,
-      progreso: obtenerProgreso("ahorro") || 0
-    },
-    {
-      nombre: "Presupuesto Personal",
-      completada: obtenerProgreso("presupuesto") === 100,
-      progreso: obtenerProgreso("presupuesto") || 0
-    },
-    {
-      nombre: "Inversión Responsable",
-      completada: obtenerProgreso("inversion") === 100,
-      progreso: obtenerProgreso("inversion") || 0
-    },
-    {
-      nombre: "Seguridad Digital",
-      completada: obtenerProgreso("seguridad") === 100,
-      progreso: obtenerProgreso("seguridad") || 0
-    },
-  ];
-
-  const leccionesCompletadas = leccionesData.filter((l) => l.completada).length;
+  
+  //const leccionesCompletadas = leccionesData.filter((l) => l.completada).length;
   const retosCompletados = 8;
 
   //  Cálculo seguro del progreso total
-  const progresoTotal = Math.min(
-    ((progreso?.ahorro || 0) +
-      (progreso?.presupuesto || 0) +
-      (progreso?.inversion || 0) +
-      (progreso?.seguridad || 0)) / 4,
-    100
-  );
+  // const progresoTotal = Math.min(
+  //   ((progreso?.ahorro || 0) +
+  //     (progreso?.presupuesto || 0) +
+  //     (progreso?.inversion || 0) +
+  //     (progreso?.seguridad || 0)) / 4,
+  //   100
+  // );
 
-  // Iniciar un reto
-  const iniciarReto = (tema) => {
-    if ((progreso[tema.toLowerCase()] || 0) === 0 && monedas < 180) {
-      alert("💰 Necesitas al menos 120 monedas para desbloquear este tema.");
-      return;
-    }
+  // // Iniciar un reto
+  // const iniciarReto = (tema) => {
+  //   if ((progreso[tema.toLowerCase()] || 0) === 0 && monedas < 180) {
+  //     alert("💰 Necesitas al menos 120 monedas para desbloquear este tema.");
+  //     return;
+  //   }
 
-    if ((progreso[tema.toLowerCase()] || 0) === 0) {
-      gastarMonedas(120);
-      alert(`🔓 Tema "${tema}" desbloqueado. ¡Buena suerte!`);
-    }
+  //   if ((progreso[tema.toLowerCase()] || 0) === 0) {
+  //     gastarMonedas(120);
+  //     alert(`🔓 Tema "${tema}" desbloqueado. ¡Buena suerte!`);
+  //   }
 
-    navigate(`/${tema.toLowerCase()}`);
-  };
+  //   navigate(`/${tema.toLowerCase()}`);
+  // };
 
   // Completar reto y ganar monedas
   const completarReto = (tema) => {
@@ -159,7 +149,7 @@ function Temas() {
               margin: "0 auto",
             }}
           >
-            <div
+            {/* <div
               style={{
                 width: `${Math.round(progresoTotal)}%`,
                 height: "100%",
@@ -167,7 +157,7 @@ function Temas() {
                 background: `linear-gradient(90deg, #60a5fa, #818cf8, #a78bfa)`,
                 transition: "width 0.8s ease-in-out",
               }}
-            ></div>
+            ></div> */}
 
             <span
               style={{
@@ -182,25 +172,21 @@ function Temas() {
                 textShadow: "1px 1px 3px rgba(255,255,255,0.7)",
               }}
             >
-              {isNaN(progresoTotal) ? "0" : Math.round(progresoTotal)}%
+              {/* {isNaN(progresoTotal) ? "0" : Math.round(progresoTotal)}% */}
             </span>
           </div>
         </div>
 
         {/* Cuadros de temas */}
         <Row xs={1} md={2} lg={4} className="g-4">
-          {[
-            { titulo: "Ahorro", img: ahorroImg },
-            { titulo: "Presupuesto", img: presupuestoImg },
-            { titulo: "Inversión", img: inversionImg },
-            { titulo: "Seguridad", img: seguridadImg },
-          ].map((tema, i) => (
+          {
+            leccionesData.map((tema, i) => (
             <Col key={i}>
               <Card className="shadow h-100 border-0 rounded-4">
                 <Card.Img
                   variant="top"
                   src={tema.img}
-                  alt={tema.titulo}
+                  alt={tema.nombre}
                   style={{
                     width: "140px",
                     height: "140px",
@@ -223,24 +209,24 @@ function Temas() {
                 />
 
                 <Card.Body>
-                  <Card.Title className="fw-bold">{tema.titulo}</Card.Title>
+                  <Card.Title className="fw-bold">{tema.nombre}</Card.Title>
                   <Card.Text>
-                    Aprende sobre {tema.titulo.toLowerCase()} con ejemplos reales.
+                    Aprende sobre {tema.descripcion.toLowerCase()} <br></br> Con ejemplos reales.
                   </Card.Text>
 
                   {/* Botones de acción */}
-                  <Button
+                  {/* <Button
                     variant="primary"
                     className="w-100"
                     onClick={() => iniciarReto(tema.titulo)}
                   >
                     Iniciar
-                  </Button>
+                  </Button> */}
 
                   <Button
                     variant="outline-success"
                     className="w-100 mt-2"
-                    onClick={() => completarReto(tema.titulo)}
+                    onClick={() => completarReto(tema.nombre)}
                   >
                     Completar
                   </Button>
@@ -559,7 +545,7 @@ function Temas() {
                     Mis Metas de Aprendizaje
                   </h3>
                   <div className="mb-4">
-                    <div
+                    {/* <div
                       className="d-flex justify-content-between align-items-center mb-2"
                       style={{ fontWeight: "600", color: "#374151" }}
                     >
@@ -579,7 +565,7 @@ function Temas() {
                       now={progresoTotal}
                       style={{ height: "12px", borderRadius: "10px" }}
                       variant="primary"
-                    />
+                    /> */}
                   </div>
 
                   <div>
@@ -596,7 +582,7 @@ function Temas() {
                         <div className="d-flex justify-content-between align-items-center mb-2">
                           <div className="d-flex align-items-center gap-2">
                             <span style={{ fontSize: "1.2rem" }}>
-                              {leccion.completada ? "✅" : "⏳"}
+                              {leccion.descripcion ? "✅" : "⏳"}
                             </span>
                             <span
                               style={{
@@ -614,13 +600,13 @@ function Temas() {
                               fontSize: "0.95rem"
                             }}
                           >
-                            {leccion.progreso}%
+                            {leccion.precio}%
                           </span>
                         </div>
                         <ProgressBar
-                          now={leccion.progreso}
+                          now={leccion.precio}
                           style={{ height: "8px", borderRadius: "10px" }}
-                          variant={leccion.completada ? "success" : "primary"}
+                          variant={leccion.descripcion ? "success" : "primary"}
                         />
                       </div>
                     ))}

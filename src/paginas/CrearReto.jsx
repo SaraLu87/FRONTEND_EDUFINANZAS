@@ -21,7 +21,7 @@ const CrearReto = () => {
     };
 
     obtenerRetos();
-  })
+  }, []);
 
   // Datos del nuevo reto
   const [titulo, setTitulo] = useState("")
