@@ -38,7 +38,7 @@ function Temas() {
         const res = await axios.get("http://127.0.0.1:8000/api/temas/");
         setTemasCreados(res.data);
       } catch (error) {
-        console.error("Error al obtener retos:", error);
+        console.error("Error al obtener temas:", error);
       }
     };
     obtenerTemas();

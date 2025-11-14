@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Button, Table, Form, Badge } from "react-bootstrap";
 import logo from "../assets/logo.png";
+import axios from "axios";
 
 const PerfilAdministrador = () => {
   const navigate = useNavigate()
@@ -12,16 +13,45 @@ const PerfilAdministrador = () => {
     id: "001",
     fotoPerfil: logo,
   })
+  // ----------------------------------------------------------------
+  const [usuarios, setUsuarios] = useState([])
+  
+  useEffect(() => {
+    const obtenerUsuarios = async () => {
+      try {
+        const res = await axios.get("http://127.0.0.1:8000/api/perfiles/");
+        setUsuarios(res.data);
+      } catch (error) {
+        console.error("Error al obtener prefiles:", error);
+      }
+    };
+    obtenerUsuarios();
+  }, []);
 
-  const [usuarios, setUsuarios] = useState([
-    { id: "001", nombre: "Ana García López", correo: "ana.garcia@email.com", rol: "Usuario" },
-    { id: "002", nombre: "Carlos Mendoza", correo: "carlos.mendoza@email.com", rol: "Usuario" },
-    { id: "003", nombre: "María Torres", correo: "maria.torres@email.com", rol: "Usuario" },
-    { id: "004", nombre: "Juan Pérez", correo: "juan.perez@email.com", rol: "Usuario" },
-  ])
+  // ----------------------------------------------------------------------
 
+  const [perfiles, setPefiles] = useState([])
+  
+  useEffect(() => {
+    const obtenerPerfiles = async () => {
+      try {
+        const res = await axios.get("http://127.0.0.1:8000/api/usuarios/");
+        setPefiles(res.data);
+      } catch (error) {
+        console.error("Error al obtener prefiles:", error);
+      }
+    };
+    obtenerPerfiles();
+  }, []);
+  
   const [modoEdicion, setModoEdicion] = useState(null)
   const [usuarioEditado, setUsuarioEditado] = useState(null)
+
+  //const perfilEncontrado = perfiles.find(p => p.correo === usuarios.correo);
+  const perfilEncontrado = (correo) => {
+    return perfiles.find(p => p.correo === correo);
+    console.log(perfiles.find(p => p.correo === correo))
+  }
 
   const handleCrearReto = () => {
     navigate("/crear-reto")
@@ -30,6 +60,12 @@ const PerfilAdministrador = () => {
   const handleEditarUsuario = (usuario) => {
     setModoEdicion(usuario.id)
     setUsuarioEditado({ ...usuario })
+    // const res = await axios.put(
+    //   `http://127.0.0.1:8000/api/usuarios/${usuario.id_usuario}/`,
+    //   datosActualizados
+    // );
+
+    // console.log("Usuario actualizado:", res.data);
   }
 
   const handleGuardarUsuario = () => {
@@ -281,9 +317,9 @@ const PerfilAdministrador = () => {
                 </thead>
                 <tbody>
                   {usuarios.map((usuario) => (
-                    <tr key={usuario.id}>
+                    <tr key={usuario.id_perfil}>
                       <td style={{ padding: "12px", verticalAlign: "middle" }}>
-                        {modoEdicion === usuario.id && usuarioEditado ? (
+                        {modoEdicion === usuario.id_perfil && usuarioEditado ? (
                           <Form.Control
                             type="text"
                             value={usuarioEditado.nombre}
@@ -296,11 +332,11 @@ const PerfilAdministrador = () => {
                             }}
                           />
                         ) : (
-                          usuario.nombre
+                          usuario.nombre_perfil
                         )}
                       </td>
                       <td style={{ padding: "12px", verticalAlign: "middle" }}>
-                        {modoEdicion === usuario.id && usuarioEditado ? (
+                        {modoEdicion === usuario.id_perfil && usuarioEditado ? (
                           <Form.Control
                             type="email"
                             value={usuarioEditado.correo}
@@ -317,7 +353,7 @@ const PerfilAdministrador = () => {
                         )}
                       </td>
                       <td style={{ padding: "12px", verticalAlign: "middle" }}>
-                        {modoEdicion === usuario.id && usuarioEditado ? (
+                        {modoEdicion === usuario.id_perfil && usuarioEditado ? (
                           <Form.Select
                             value={usuarioEditado.rol}
                             onChange={(e) => handleInputChange("rol", e.target.value)}
@@ -333,14 +369,14 @@ const PerfilAdministrador = () => {
                           </Form.Select>
                         ) : (
                           <Badge
-                            bg={usuario.rol === "Administrador" ? "success" : "primary"}
+                            bg={perfilEncontrado(usuario.correo)?.rol === "Administrador" ? "success" : "primary"}
                             style={{
                               fontSize: "0.85rem",
                               padding: "6px 12px",
                               fontWeight: "600"
                             }}
                           >
-                            {usuario.rol}
+                            {perfilEncontrado(usuario.correo)?.rol || "Sin Rol"}
                           </Badge>
                         )}
                       </td>
@@ -390,7 +426,7 @@ const PerfilAdministrador = () => {
                               <Button
                                 size="sm"
                                 variant="outline-danger"
-                                onClick={() => handleEliminarUsuario(usuario.id)}
+                                onClick={() => handleEliminarUsuario(usuario.id_usuario)}
                                 style={{
                                   borderRadius: "8px",
                                   padding: "6px 12px"
