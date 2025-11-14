@@ -1,9 +1,9 @@
-import { Container } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-import "../componentes/InversionDatos.css";
+import "../componentes/DatosGlobal.css";
 
 function InversionDatos() {
   const navigate = useNavigate();
@@ -12,22 +12,26 @@ function InversionDatos() {
     {
       titulo: "🍕 ¡Las Pizzas que Valen Millones!",
       texto:
-        "¿Sabías que en 2010, un programador pagó 10.000 Bitcoins por dos pizzas? Hoy, esos 10.000 Bitcoins valdrían cientos de millones de dólares. Ese fue un 'costo de oportunidad' de inversión increíble.",
+        "En 2010, un programador pagó 10.000 Bitcoins por dos pizzas. Hoy valdrían cientos de millones. Un ejemplo real de costo de oportunidad.",
+      color: "azul",
     },
     {
       titulo: "⏳ Empezar Temprano es la Clave",
       texto:
-        "Los jóvenes tienen un 'superpoder' extra para invertir: el tiempo. Con muchos años por delante, incluso pequeñas cantidades pueden convertirse en grandes fortunas gracias al interés compuesto.",
+        "Los jóvenes tienen ventaja al invertir: tiempo. Gracias al interés compuesto, pequeñas inversiones se vuelven grandes.",
+      color: "verde",
     },
     {
       titulo: "💡 Grandes Inventos que Nacieron de Inversiones",
       texto:
-        "Empresas como Apple o Google empezaron con pequeñas inversiones de personas que creyeron en sus ideas. ¡Quién sabe, quizás inviertas en la próxima gran innovación!",
+        "Apple, Google y muchas grandes empresas nacieron gracias a inversiones de confianza de personas comunes.",
+      color: "morado",
     },
     {
       titulo: "💸 No Necesitas Ser Millonario para Invertir",
       texto:
-        "Hoy puedes invertir desde $10.000 o $50.000 COP. Existen apps y plataformas que permiten invertir fácilmente, ¡así que ya no hay excusas!",
+        "Hoy puedes invertir desde $10.000 o $50.000 COP con apps fáciles de usar.",
+      color: "amarillo",
     },
   ];
 
@@ -39,37 +43,35 @@ function InversionDatos() {
         className="inversion-datos-fondo"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.2 }}
+        transition={{ duration: 1 }}
       >
-        <Container className="text-center py-5">
-          <h1 className="titulo-datos">
-            📊 Datos Curiosos de la Inversión
-          </h1>
-          <h4 className="subtitulo-datos mb-5">
-            ¡Hechos Asombrosos de los Ricos y Famosos!
-          </h4>
+        <Container className="py-5 text-center">
+          <h1 className="titulo-datos">📊 Datos Curiosos de la Inversión</h1>
+          <p className="subtitulo-datos">¡Hechos increíbles del mundo financiero!</p>
 
-          <div className="grid-datos">
-            {datos.map((dato, index) => (
-              <motion.div
-                key={index}
-                className="tarjeta-dato"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 200 }}
-              >
-                <h3>{dato.titulo}</h3>
-                <p>{dato.texto}</p>
-              </motion.div>
+          <Row xs={1} md={2} lg={3} className="g-4 mt-4">
+            {datos.map((dato, i) => (
+              <Col key={i}>
+                <motion.div
+                  className={`tarjeta-dato tarjeta-${dato.color}`}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <h5>{dato.titulo}</h5>
+                  <p>{dato.texto}</p>
+                </motion.div>
+              </Col>
             ))}
-          </div>
+          </Row>
 
-          <motion.button
-            className="boton-siguiente"
-            onClick={() => navigate("/inversion-preguntas")}
-            whileHover={{ scale: 1.1 }}
-          >
-            Siguiente ➡️
-          </motion.button>
+          <motion.div whileHover={{ scale: 1.1 }} className="mt-5">
+            <Button
+              variant="success"
+              className="boton-siguiente"
+              onClick={() => navigate("/inversion-preguntas")}
+            >
+              Siguiente ➡️
+            </Button>
+          </motion.div>
         </Container>
       </motion.div>
 

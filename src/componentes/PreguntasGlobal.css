@@ -1,4 +1,4 @@
-/* 🎨 FONDO GENERAL */
+/* FONDO GENERAL */
 .preguntas-fondo {
   min-height: 100vh;
   padding: 40px 10px;
@@ -8,7 +8,7 @@
   align-items: flex-start;
 }
 
-/* 🎯 TÍTULO DE LA PREGUNTA */
+/* TÍTULO DE LA PREGUNTA */
 .titulo-pregunta {
   font-size: 1.6rem;
   font-weight: 800;
@@ -17,7 +17,7 @@
   padding: 0 20px;
 }
 
-/* 🟣 CONTENEDOR DE OPCIONES */
+/* CONTENEDOR DE OPCIONES */
 .contenedor-opciones {
   width: 100%;
   max-width: 600px;
@@ -27,7 +27,7 @@
   gap: 18px;
 }
 
-/* 🟦 OPCIÓN - ÓVALO ALARGADO */
+/*  OPCIÓN - ÓVALO ALARGADO */
 .opcion {
   display: flex;
   align-items: center;
@@ -50,7 +50,7 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* 🔘 CÍRCULO DE SELECCIÓN */
+/* CÍRCULO DE SELECCIÓN */
 .circulo {
   width: 22px;
   height: 22px;
@@ -60,25 +60,25 @@
   transition: all 0.25s ease;
 }
 
-/* 🟢 MARCADO CORRECTO */
+/*  MARCADO CORRECTO */
 .marcado-correcto {
   background-color: #22c55e;
   border-color: #15803d;
 }
 
-/* 🔴 MARCADO INCORRECTO */
+/*  MARCADO INCORRECTO */
 .marcado-incorrecto {
   background-color: #ef4444;
   border-color: #b91c1c;
 }
 
-/* 💚 BORDE COMPLETO EN LA OPCIÓN CORRECTA */
+/*  BORDE COMPLETO EN LA OPCIÓN CORRECTA */
 .opcion.correcta {
   border-color: #22c55e;
   background: #dcfce7;
 }
 
-/* ❤️ OPCIÓN INCORRECTA */
+/*  OPCIÓN INCORRECTA */
 .opcion.incorrecta {
   border-color: #ef4444;
   background: #fee2e2;
@@ -92,7 +92,7 @@
   font-weight: 600;
 }
 
-/* 🌟 PANTALLA FINAL */
+/* PANTALLA FINAL */
 .final-preguntas,
 .felicitaciones {
   max-width: 600px;
@@ -111,7 +111,7 @@
   font-weight: 600;
 }
 
-/* 📱 Responsive */
+/* Responsive */
 @media (max-width: 768px) {
   .titulo-pregunta {
     font-size: 1.3rem;

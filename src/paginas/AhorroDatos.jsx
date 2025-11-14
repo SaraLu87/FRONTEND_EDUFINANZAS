@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-import "../componentes/AhorroDatos.css";
+import "../componentes/DatosGlobal.css";
 
 import reglaImg from "../assets/regla.png";      // Imagen 1
 import misionImg from "../assets/mision.png";    // Imagen 3

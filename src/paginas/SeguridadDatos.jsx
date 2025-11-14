@@ -1,33 +1,37 @@
-import { Container } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-import "../componentes/SeguridadDatos.css";
+import "../componentes/DatosGlobal.css";
 
 function SeguridadDatos() {
   const navigate = useNavigate();
 
   const datos = [
     {
-      titulo: "🎭 ¡El Ataque de la 'Ingeniería Social'!",
+      titulo: "🎭 Ingeniería Social",
       texto:
-        "Los 'villanos' no siempre usan computadoras. A veces solo te manipulan, haciéndose pasar por un banco o amigo para que tú mismo les des tus datos. ¡Nunca compartas tu información sin verificar!",
+        "A veces los estafadores solo te manipulan para que tú entregues tus datos. Verifica siempre antes de compartir.",
+      color: "rosa",
     },
     {
-      titulo: "🔒 Contraseñas que Durarían Millones de Años",
+      titulo: "🔒 Contraseñas Seguras",
       texto:
-        "Una contraseña con 12 caracteres (mayúsculas, minúsculas, números y símbolos) puede tardar millones de años en ser adivinada. ¡Entre más larga y compleja, mejor tu escudo!",
+        "Una contraseña con 12 caracteres variados puede tardar millones de años en ser descifrada.",
+      color: "azul",
     },
     {
-      titulo: "🕵️‍♀️ El 'Candadito' No Es un Adorno",
+      titulo: "🕵️‍♀️ El Candadito No Es Decorativo",
       texto:
-        "Ese pequeño candado en la barra de direcciones (https://) significa que la conexión es segura y tus datos van protegidos. ¡Asegúrate de verlo antes de pagar o ingresar información!",
+        "El candado HTTPS significa conexión segura. Verifica siempre antes de pagar o ingresar datos.",
+      color: "verde",
     },
     {
-      titulo: "💻 Tu Huella Digital es Más que tu Dedo",
+      titulo: "💻 Tu Huella Digital",
       texto:
-        "Todo lo que haces en internet deja un rastro: búsquedas, compras, publicaciones. ¡Cuida tu huella digital y protege tu privacidad para un futuro financiero seguro!",
+        "Todo lo que haces en internet deja un rastro. Cuídalo para mantener tu seguridad financiera.",
+      color: "morado",
     },
   ];
 
@@ -39,33 +43,35 @@ function SeguridadDatos() {
         className="seguridad-datos-fondo"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.2 }}
+        transition={{ duration: 1 }}
       >
-        <Container className="text-center py-5">
-          <h1 className="titulo-datos">🧠 Datos Curiosos de la Seguridad Financiera</h1>
-          <h4 className="subtitulo-datos mb-5">¡Alerta, Súper Agente! 🕵️‍♂️</h4>
+        <Container className="py-5 text-center">
+          <h1 className="titulo-datos">🧠 Datos de Seguridad Financiera</h1>
+          <p className="subtitulo-datos">¡Consejos para proteger tus finanzas!</p>
 
-          <div className="grid-datos">
-            {datos.map((dato, index) => (
-              <motion.div
-                key={index}
-                className="tarjeta-dato"
-                whileHover={{ scale: 1.05, rotate: 1 }}
-                transition={{ type: "spring", stiffness: 200 }}
-              >
-                <h3>{dato.titulo}</h3>
-                <p>{dato.texto}</p>
-              </motion.div>
+          <Row xs={1} md={2} lg={3} className="g-4 mt-4">
+            {datos.map((dato, i) => (
+              <Col key={i}>
+                <motion.div
+                  className={`tarjeta-dato tarjeta-${dato.color}`}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <h5>{dato.titulo}</h5>
+                  <p>{dato.texto}</p>
+                </motion.div>
+              </Col>
             ))}
-          </div>
+          </Row>
 
-          <motion.button
-            className="boton-siguiente"
-            onClick={() => navigate("/seguridad-preguntas")}
-            whileHover={{ scale: 1.1 }}
-          >
-            Siguiente ➡️
-          </motion.button>
+          <motion.div whileHover={{ scale: 1.1 }} className="mt-5">
+            <Button
+              variant="success"
+              className="boton-siguiente"
+              onClick={() => navigate("/seguridad-preguntas")}
+            >
+              Siguiente ➡️
+            </Button>
+          </motion.div>
         </Container>
       </motion.div>
 

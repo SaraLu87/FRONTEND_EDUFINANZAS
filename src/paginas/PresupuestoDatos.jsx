@@ -1,9 +1,9 @@
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-import "../componentes/PresupuestoDatos.css";
+import "../componentes/DatosGlobal.css";
 
 function PresupuestoDatos() {
   const navigate = useNavigate();
@@ -12,32 +12,38 @@ function PresupuestoDatos() {
     {
       titulo: '💸 El Efecto "Gasto Invisible"',
       texto:
-        'A veces, pequeñas compras diarias (esa gaseosa, ese dulce) suman mucho al final de la semana o el mes. Si no tienes un presupuesto, ¡esos pequeños gastos son “invisibles” y desaparecen tu dinero sin que te des cuenta!',
+        "Pequeños gastos diarios se acumulan sin darte cuenta. El presupuesto hace visibles esos gastos ocultos.",
+      color: "rosa",
     },
     {
-      titulo: '🧠 Tu Cerebro Ama la Claridad',
+      titulo: "🧠 Tu Cerebro Ama la Claridad",
       texto:
-        'Cuando ves tus gastos organizados en un presupuesto (en una app, una libreta, etc.), tu cerebro puede procesarlo mejor. ¡Te ayuda a tomar decisiones más inteligentes y a resistir las compras por impulso!',
+        "Un presupuesto ordenado ayuda a tomar decisiones más inteligentes y evita compras impulsivas.",
+      color: "celeste",
     },
     {
-      titulo: '📊 "Presupuestar" No es Prohibir, es Organizar',
+      titulo: "📊 Presupuestar No Es Limitar",
       texto:
-        'Mucha gente cree que presupuestar es no poder gastar. ¡Todo lo contrario! Es darte permiso para gastar en lo que es importante para ti, pero de forma inteligente, asegurando que también alcances tus metas.',
+        "Presupuestar te da permiso de gastar en lo importante mientras cuidas tus metas.",
+      color: "verde",
     },
     {
-      titulo: '🐜 La "Deuda Hormiga"',
+      titulo: "🐜 La 'Deuda Hormiga'",
       texto:
-        'Sin un presupuesto, es fácil acumular muchas pequeñas deudas que luego se vuelven un problema grande. El presupuesto es tu escudo contra estas “deudas hormiga”.',
+        "Muchas pequeñas deudas se vuelven un problema grande. El presupuesto las controla.",
+      color: "morado",
     },
     {
-      titulo: '💡 Visualizar es Ahorrar',
+      titulo: "💡 Visualizar es Ahorrar",
       texto:
-        'Ver tus metas por escrito o en una app te motiva a cumplirlas. Cada vez que registras tus gastos y ves tu progreso, ¡sientes una mini recompensa que refuerza tu disciplina financiera!',
+        "Ver tus metas te motiva. Registrar gastos genera disciplina financiera.",
+      color: "amarillo",
     },
     {
-      titulo: '📅 Tu Presupuesto es Vivo',
+      titulo: "📅 El Presupuesto Es Vivo",
       texto:
-        'El presupuesto no es rígido. Puedes ajustarlo mes a mes según tus prioridades. ¡Es como un entrenador que se adapta a tus nuevas metas!',
+        "Puedes ajustarlo cada mes según tus prioridades. Se adapta a tus nuevas metas.",
+      color: "azul",
     },
   ];
 
@@ -51,41 +57,29 @@ function PresupuestoDatos() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <Container className="text-center py-5">
-          <h1 className="titulo-datos">📘 Datos Curiosos del Presupuesto Personal</h1>
-          <h5 className="subtitulo-datos mb-4 text-muted">
-            ¡Descubre los secretos de un experto en dinero!
-          </h5>
+        <Container className="py-5 text-center">
+          <h1 className="titulo-datos">📘 Datos Curiosos del Presupuesto</h1>
+          <p className="subtitulo-datos">¡Secretos que te convertirán en un experto!</p>
 
-          <Row className="g-4 justify-content-center">
-            {datos.map((dato, index) => (
-              <Col key={index} xs={12} sm={6} lg={4}>
+          <Row xs={1} md={2} lg={3} className="g-4 mt-4">
+            {datos.map((dato, i) => (
+              <Col key={i}>
                 <motion.div
-                  className="tarjeta-dato"
+                  className={`tarjeta-dato tarjeta-${dato.color}`}
                   whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
                 >
-                  <Card className="shadow-lg border-0 rounded-4 h-100">
-                    <Card.Body className="p-4">
-                      <Card.Title className="fw-bold text-primary mb-3">
-                        {dato.titulo}
-                      </Card.Title>
-                      <Card.Text className="text-secondary">
-                        {dato.texto}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
+                  <h5>{dato.titulo}</h5>
+                  <p>{dato.texto}</p>
                 </motion.div>
               </Col>
             ))}
           </Row>
 
-          {/* Botón siguiente */}
           <motion.div whileHover={{ scale: 1.1 }} className="mt-5">
             <Button
               variant="success"
-              onClick={() => navigate("/presupuesto-preguntas")}
               className="boton-siguiente"
+              onClick={() => navigate("/presupuesto-preguntas")}
             >
               Siguiente ➡️
             </Button>
