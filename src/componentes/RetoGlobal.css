@@ -29,7 +29,7 @@
   position: relative;
 }
 
-/* 🎯 Estilo general de los círculos */
+/* Estilo general de los círculos */
 .reto-circulo {
   width: 150px;
   height: 150px;
@@ -52,7 +52,7 @@
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
 }
 
-/* 🎨 Colores personalizados */
+/* Colores personalizados */
 .circulo-azul {
   background: linear-gradient(135deg, #2563eb, #3b82f6);
 }
@@ -65,7 +65,7 @@
   background: linear-gradient(135deg, #7c3aed, #8b5cf6);
 }
 
-/* 🌈 Conector mejorado con efecto de brillo */
+/* Conector mejorado con efecto de brillo */
 .conector-efecto {
   width: 120px;
   height: 6px;
@@ -93,14 +93,14 @@
   }
 }
 
-/* 📝 Instrucción */
+/* Instrucción */
 .texto-instruccion {
   font-size: 0.95rem;
   color: #475569;
   margin-top: 30px;
 }
 
-/* 📱 Responsive */
+/* Responsive */
 @media (max-width: 992px) {
   .flujo-retos {
     flex-direction: column;

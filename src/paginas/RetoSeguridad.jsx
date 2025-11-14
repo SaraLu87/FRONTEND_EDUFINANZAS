@@ -4,14 +4,14 @@ import { useMonedas } from "../componentes/MonedasContext";
 import { useProgreso } from "../componentes/ProgresoContext";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-import "../componentes/RetoSeguridad.css";
+import "../componentes/RetoGlobal.css";
 
 function RetoSeguridad() {
   const navigate = useNavigate();
   const { monedas, ganarMonedas } = useMonedas();
   const { progreso, actualizarProgreso } = useProgreso();
 
-  // 🪙 Completar reto
+  // Completar reto
   const completarReto = (nivel) => {
     ganarMonedas(60);
     const nuevoProgreso = Math.min(progreso.seguridad + 33.3, 100);
@@ -42,7 +42,7 @@ function RetoSeguridad() {
 
             <div className="conector-efecto"></div>
 
-            {/* 🔹 2. Datos curiosos */}
+            {/* 2. Datos curiosos */}
             <div
               className="reto-circulo circulo-verde"
               onClick={() => navigate("/seguridad-datos")}
@@ -53,7 +53,7 @@ function RetoSeguridad() {
 
             <div className="conector-efecto"></div>
 
-            {/* 🔹 3. Preguntas */}
+            {/* 3. Preguntas */}
             <div
               className="reto-circulo circulo-morado"
               onClick={() => navigate("/seguridad-preguntas")}
@@ -63,9 +63,6 @@ function RetoSeguridad() {
             </div>
           </div>
 
-          <p className="texto-instruccion mt-4 text-secondary">
-            Haz clic para ingresar al reto o doble clic para marcarlo como completado.
-          </p>
         </Container>
       </div>
 

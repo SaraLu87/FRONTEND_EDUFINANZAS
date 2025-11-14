@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-import "../componentes/InversionInfo.css";
+import "../componentes/GlobalInfo.css";
 
 function InversionInfo() {
   const navigate = useNavigate();

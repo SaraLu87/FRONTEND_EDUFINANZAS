@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-import "../componentes/PresupuestoInfo.css";
+import "../componentes/GlobalInfo.css";
 
 function PresupuestoInfo() {
   const navigate = useNavigate();

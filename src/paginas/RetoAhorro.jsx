@@ -4,14 +4,14 @@ import { useMonedas } from "../componentes/MonedasContext";
 import { useProgreso } from "../componentes/ProgresoContext";
 import Encabezado from "../componentes/Encabezado";
 import Footer from "../componentes/Footer";
-import "../componentes/RetoAhorro.css";
+import "../componentes/RetoGlobal.css";
 
 function RetoAhorro() {
   const navigate = useNavigate();
-  const { monedas, ganarMonedas, gastarMonedas } = useMonedas();
+  const { monedas, ganarMonedas } = useMonedas();
   const { progreso, actualizarProgreso } = useProgreso();
 
-  // 🪙 Cada reto completado otorga monedas y aumenta el progreso
+  // 🪙 Completar reto
   const completarReto = (nivel) => {
     ganarMonedas(60);
     const nuevoProgreso = Math.min(progreso.ahorro + 33.3, 100);
@@ -25,35 +25,35 @@ function RetoAhorro() {
 
       <div className="reto-fondo">
         <Container className="text-center py-5">
-          <h1 className="titulo-reto">Ahorro</h1>
+          <h1 className="titulo-reto">💰 Ahorro</h1>
           <h3 className="subtitulo-reto text-muted mb-5">
-            ¡Tu Superpoder Financiero!
+            ¡Tu superpoder financiero!
           </h3>
 
           <div className="flujo-retos">
-            {/* 🔹 1. Lo que debes saber */}
+            {/* 1. Lo que debes saber */}
             <div
-              className="reto-circulo circulo-verde"
+              className="reto-circulo circulo-azul"
               onClick={() => navigate("/ahorro-info")}
               onDoubleClick={() => completarReto("Lo que debes saber")}
             >
               <h5>Lo que debes saber</h5>
             </div>
 
-            <div className="conector-curvo"></div>
+            <div className="conector-efecto"></div>
 
-            {/* 🔹 2. Datos curiosos */}
+            {/* 2. Datos curiosos */}
             <div
-              className="reto-circulo circulo-amarillo"
+              className="reto-circulo circulo-verde"
               onClick={() => navigate("/ahorro-datos")}
               onDoubleClick={() => completarReto("Datos curiosos")}
             >
               <h5>Datos curiosos</h5>
             </div>
 
-            <div className="conector-curvo"></div>
+            <div className="conector-efecto"></div>
 
-            {/* 🔹 3. Preguntas */}
+            {/* 3. Preguntas */}
             <div
               className="reto-circulo circulo-morado"
               onClick={() => navigate("/ahorro-preguntas")}
@@ -63,10 +63,6 @@ function RetoAhorro() {
             </div>
           </div>
 
-          {/* 💬 Instrucción al usuario */}
-          <p className="texto-instruccion mt-4 text-secondary">
-            Haz clic para ingresar al reto o doble clic para marcarlo como completado.
-          </p>
         </Container>
       </div>
 
