@@ -1,0 +1,155 @@
+/* Contenedor principal */
+.admin-page {
+    min-height: 100vh;
+    background-color: #f3f4f6; /* bg-gray-100 */
+    font-family: "Poppins, sans-serif";
+    padding-bottom: 40px;
+}
+
+/* Encabezado */
+.admin-header-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #3730a3; /* indigo-800 */
+    margin: 0;
+}
+
+.create-challenge-btn {
+    border-radius: 25px;
+    font-weight: 600;
+    padding: 10px 25px;
+    background-color: #10b981; /* emerald-500 */
+    border: none;
+    font-size: 1.05rem;
+}
+
+/* Tarjeta de Perfil */
+.profile-card {
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-sm */
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 15px;
+    border: 4px solid #4f46e5; /* indigo-600 */
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3730a3; /* indigo-800 */
+    margin-bottom: 5px;
+}
+
+.profile-email {
+    color: #6b7280; /* gray-500 */
+    font-size: 0.95rem;
+}
+
+/* Tarjeta de Estadísticas */
+.stats-card {
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-sm */
+    margin-top: 1rem; /* mt-4 */
+}
+
+.stats-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #3730a3; /* indigo-800 */
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #f9fafb; /* gray-50 */
+    border-radius: 12px;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    margin-right: 15px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3730a3; /* indigo-800 */
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #6b7280; /* gray-500 */
+}
+
+/* Gestión de Usuarios */
+.users-card {
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-sm */
+}
+
+.users-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #3730a3; /* indigo-800 */
+    margin-bottom: 25px;
+}
+
+/* Estilos de la tabla */
+.table thead {
+    background-color: #f9fafb; /* gray-50 */
+    border-radius: 10px;
+}
+
+.table th {
+    font-weight: 600;
+    color: #374151; /* gray-700 */
+    padding: 12px;
+}
+
+.table td {
+    padding: 12px;
+    vertical-align: middle;
+}
+
+/* Estilos de los inputs de edición */
+.edit-input, .edit-select {
+    border-radius: 8px;
+    border: 1.5px solid #cbd5e1; /* slate-300 */
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+/* Botones de acción */
+.save-btn {
+    background-color: #10b981; /* emerald-500 */
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+.cancel-btn {
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+.edit-btn {
+    border-radius: 8px;
+    padding: 6px 12px;
+    border-color: #4f46e5 !important; /* indigo-600 */
+    color: #4f46e5 !important; /* indigo-600 */
+}
+
+.delete-btn {
+    border-radius: 8px;
+    padding: 6px 12px;
+}

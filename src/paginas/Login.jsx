@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import fondo from "../assets/fondo1.png";
+import "../componentes/Login.css"; // ⬅️ ¡IMPORTACIÓN DEL ARCHIVO CSS!
 
 function Login() {
   const navigate = useNavigate();
@@ -44,46 +44,24 @@ function Login() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        backgroundImage: `linear-gradient(rgba(79,70,229,0.6), rgba(55,48,163,0.6)), url(${fondo})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        fontFamily: "Poppins, sans-serif",
-      }}
-    >
+    // ⬅️ Reemplazo del gran estilo en línea por la clase 'login-container'
+    <div className="login-container">
       <Card
-        className="shadow-lg p-4"
-        style={{
-          width: "100%",
-          maxWidth: "400px",
-          borderRadius: "70px",
-          background: "#ffffff",
-          textAlign: "center",
-        }}
+        // ⬅️ Uso de la clase 'login-card' para estilos de la tarjeta
+        className="shadow-lg p-4 login-card"
       >
         {/* LOGO Y TÍTULO */}
         <div className="text-center mb-1">
           <img
             src={logo}
             alt="EduFinanzas"
-            style={{
-              width: "90px",
-              height: "85px",
-              borderRadius: "60%",
-              objectFit: "cover",
-              transform: "scale(1.7)",
-              marginBottom: "30px",
-            }}
+            // ⬅️ Uso de la clase 'login-logo' para estilos del logo
+            className="login-logo"
           />
           <h2
             className="fw-bold"
             style={{
+              // Mantener estilos únicos o complejos en línea es aceptable
               color: "#3730a3",
               fontSize: "1.7rem",
               marginTop: "0px",
@@ -105,7 +83,8 @@ function Login() {
               value={formData.correo}
               onChange={manejarCambio}
               placeholder="Correo electrónico"
-              style={inputEstilo}
+              // ⬅️ Uso de la clase 'custom-input'
+              className="custom-input"
             />
             {errores.correo && (
               <Alert variant="danger" className="mt-2" style={{ fontSize: "0.85rem" }}>
@@ -121,7 +100,8 @@ function Login() {
               value={formData.password}
               onChange={manejarCambio}
               placeholder="Contraseña"
-              style={inputEstiloAzul}
+              // ⬅️ Uso de la clase 'custom-input' y 'custom-input-password'
+              className="custom-input custom-input-password"
             />
             {errores.password && (
               <Alert variant="danger" className="mt-2" style={{ fontSize: "0.85rem" }}>
@@ -138,12 +118,8 @@ function Login() {
                 e.preventDefault();
                 alert("📧 Se enviará un enlace de recuperación a tu correo.");
               }}
-              style={{
-                color: "#4f46e5",
-                textDecoration: "none",
-                fontSize: "0.8rem",
-                fontWeight: "600",
-              }}
+              // ⬅️ Uso de la clase 'forgot-password-link'
+              className="forgot-password-link"
             >
               ¿Olvidaste tu contraseña?
             </a>
@@ -152,19 +128,13 @@ function Login() {
           {/* BOTÓN */}
           <Button
             type="submit"
-            className="w-100 fw-semibold py-2 mt-2"
-            style={{
-              backgroundColor: "#4f46e5",
-              border: "none",
-              borderRadius: "500px",
-              fontSize: "0.9rem",
-            }}
+            className="w-100 fw-semibold py-2 mt-2 login-button" // ⬅️ Uso de la clase 'login-button'
           >
             Iniciar Sesión
           </Button>
         </Form>
 
-        {/* ENLACE A REGISTRO */}
+        {/* ENLACE A REGISTRO Y VOLVER AL INICIO... (el resto del código se mantiene igual ya que sus estilos eran sencillos) */}
         <div className="text-center mt-3">
           <p style={{ fontSize: "0.8rem", color: "#6b7280" }}>
             ¿No tienes cuenta?{" "}
@@ -185,7 +155,6 @@ function Login() {
           </p>
         </div>
 
-        {/* ENLACE AL INICIO */}
         <div className="text-center mt-2">
           <p style={{ fontSize: "0.75rem", color: "#9ca3af" }}>
             <a
@@ -209,22 +178,3 @@ function Login() {
 }
 
 export default Login;
-
-// 🎨 ESTILOS
-const inputEstilo = {
-  borderRadius: "25px",
-  border: "1.5px solid #cbd5e1",
-  padding: "1px 18px",
-  fontSize: "0.95rem",
-  marginBottom: "1px",
-  backgroundColor: "#f8fafc",
-  transition: "0.3s",
-  margin: "8px auto",
-  width: "90%",
-};
-
-const inputEstiloAzul = {
-  ...inputEstilo,
-  backgroundColor: "#e0e7ff",
-  border: "1.5px solid #6366f1",
-};

@@ -1,0 +1,167 @@
+
+/* Contenedor principal de la página (Reemplaza el estilo en línea grande) */
+.profile-main-container {
+    min-height: 100vh;
+    background-color: #f3f4f6;
+    font-family: 'Poppins', sans-serif;
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+
+/* Encabezado del Perfil (h1) */
+.profile-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #3730a3;
+    margin: 0;
+}
+
+/* Estilo para los botones de la cabecera */
+.profile-button {
+    border-radius: 25px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border: none;
+}
+
+.profile-button-save {
+    background-color: #10b981; /* Success */
+}
+
+.profile-button-edit {
+    background-color: #4f46e5; /* Primary */
+}
+
+/* Estilo para la tarjeta base */
+.profile-card {
+    border-radius: 20px !important;
+    padding: 20px;
+    border: none !important;
+}
+
+/*
+ * --------------------------------
+ * TARJETA DE USUARIO (Izquierda)
+ * --------------------------------
+ */
+
+/* Contenedor de la imagen de perfil para posicionamiento relativo */
+.profile-picture-container {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+/* Imagen de perfil */
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #4f46e5;
+}
+
+/* Botón/Label para cambiar la foto */
+.profile-photo-change-label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #4f46e5;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Título de la tarjeta (Nombre del usuario) */
+.profile-name-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3730a3;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+/* Contenedor de monedas */
+.monedas-container {
+    background-color: #fef3c7; /* yellow-100 */
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Valor de las monedas */
+.monedas-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #92400e; /* amber-800 */
+}
+
+/*
+ * --------------------------------
+ * ESTADÍSTICAS Y LECCIONES
+ * --------------------------------
+ */
+
+/* Contenedor de estadísticas individuales (Lecciones/Retos) */
+.stats-box {
+    text-align: center;
+    padding: 15px;
+    background-color: #f9fafb; /* gray-50 */
+    border-radius: 15px;
+}
+
+/* Títulos de las secciones (Estadísticas, Datos Personales, Metas) */
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #3730a3;
+    margin-bottom: 25px;
+}
+
+/* Etiqueta de formulario */
+.form-label-custom {
+    font-weight: 600;
+    color: #374151; /* gray-700 */
+}
+
+/* Estilo del input en modo edición */
+.form-control-edit {
+    border-radius: 10px;
+    padding: 10px 15px;
+    border: 1.5px solid #cbd5e1; /* slate-300 */
+}
+
+/* Contenedor de lección individual */
+.leccion-item {
+    padding: 15px;
+    background-color: #f9fafb;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+/* Título de la lección */
+.leccion-title {
+    font-weight: 600;
+    color: #3730a3;
+}
+
+/* Porcentaje de progreso de la lección */
+.leccion-progress-percent {
+    font-weight: 600;
+    color: #4f46e5;
+    font-size: 0.95rem;
+}
+
+/* Badge de Progreso General */
+.badge-general-progress {
+    background-color: #4f46e5 !important;
+    font-size: 1rem;
+    padding: 5px 12px;
+}

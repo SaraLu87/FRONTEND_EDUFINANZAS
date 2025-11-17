@@ -1,0 +1,68 @@
+/* Base del Contenedor Principal (Reemplaza el estilo en línea grande) */
+.login-container {
+    min-height: 100vh;
+    /* Usamos una variable CSS para la imagen de fondo */
+    background-image: linear-gradient(rgba(79, 70, 229, 0.6), rgba(55, 48, 163, 0.6)), var(--login-background-url);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    /* Definimos la URL de fondo aquí */
+    --login-background-url: url('../assets/fondo1.png');
+}
+
+/* Estilo para la tarjeta (Card) */
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 70px !important; /* Usamos !important para sobreescribir si es necesario */
+    background: #ffffff;
+    text-align: center;
+}
+
+/* Estilo para el logo */
+.login-logo {
+    width: 90px;
+    height: 85px;
+    border-radius: 60%;
+    object-fit: cover;
+    transform: scale(1.7);
+    margin-bottom: 30px;
+}
+
+/* Estilos de los inputs (Reemplazan inputEstilo y inputEstiloAzul) */
+.custom-input {
+    border-radius: 25px;
+    border: 1.5px solid #cbd5e1;
+    padding: 1px 18px;
+    font-size: 0.95rem;
+    margin: 8px auto;
+    width: 90%;
+    background-color: #f8fafc;
+    transition: all 0.3s ease; /* Mejor transición para UX */
+}
+
+/* Estilo para el input de Contraseña (Reemplaza inputEstiloAzul) */
+.custom-input-password {
+    background-color: #e0e7ff;
+    border: 1.5px solid #6366f1;
+}
+
+/* Estilo para el botón de Iniciar Sesión */
+.login-button {
+    background-color: #4f46e5;
+    border: none;
+    border-radius: 500px !important;
+    font-size: 0.9rem;
+}
+
+/* Estilo para el texto "¿Olvidaste tu contraseña?" */
+.forgot-password-link {
+    color: #4f46e5;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
